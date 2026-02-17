@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "soundscape:ambience_disc",
+    "minecraft:iron_ingot",
+    "minecraft:redstone",
+    "minecraft:clock"
+  ],
+  "result": {
+    "id": "soundscape:music_disc_cogs_turning",
+    "count": 1
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "soundscape:ambience_disc",
+    "minecraft:grindstone",
+    "minecraft:cobblestone"
+  ],
+  "result": {
+    "id": "soundscape:music_disc_rocks_grinding",
+    "count": 1
+  }
+}

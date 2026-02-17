@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "soundscape:ambience_disc",
+    "#minecraft:leaves",
+    "minecraft:water_bucket"
+  ],
+  "result": {
+    "id": "soundscape:music_disc_forest_rain",
+    "count": 1
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "soundscape:ambience_disc",
+    "minecraft:rail",
+    "minecraft:iron_ingot",
+    "minecraft:redstone_lamp"
+  ],
+  "result": {
+    "id": "soundscape:music_disc_cityscape_ny_subway",
+    "count": 1
+  }
+}

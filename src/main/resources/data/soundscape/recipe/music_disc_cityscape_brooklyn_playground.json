@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "soundscape:ambience_disc",
+    "minecraft:iron_bars",
+    "minecraft:grass_block",
+    "minecraft:bell"
+  ],
+  "result": {
+    "id": "soundscape:music_disc_cityscape_brooklyn_playground",
+    "count": 1
+  }
+}

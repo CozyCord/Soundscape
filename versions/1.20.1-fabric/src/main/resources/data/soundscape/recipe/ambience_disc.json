@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SS",
+    "SS"
+  ],
+  "key": {
+    "S": {
+      "item": "soundscape:ambience_disc_shard"
+    }
+  },
+  "result": {
+    "item": "soundscape:ambience_disc",
+    "count": 1
+  }
+}

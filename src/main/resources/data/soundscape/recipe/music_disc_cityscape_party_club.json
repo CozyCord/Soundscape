@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "soundscape:ambience_disc",
+    "minecraft:note_block",
+    "minecraft:glowstone",
+    "minecraft:jukebox"
+  ],
+  "result": {
+    "id": "soundscape:music_disc_cityscape_party_club",
+    "count": 1
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "soundscape:ambience_disc",
+    "minecraft:blaze_powder",
+    "minecraft:stick"
+  ],
+  "result": {
+    "id": "soundscape:music_disc_fire_burning_3",
+    "count": 1
+  }
+}

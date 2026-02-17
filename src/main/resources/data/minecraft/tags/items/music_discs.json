@@ -1,0 +1,30 @@
+{
+  "replace": false,
+  "values": [
+    "soundscape:music_disc_cave_ambience",
+    "soundscape:music_disc_forest_rain",
+    "soundscape:music_disc_leaves_rustling",
+    "soundscape:music_disc_raging_river",
+    "soundscape:music_disc_river_stream",
+    "soundscape:music_disc_water_bubbling",
+    "soundscape:music_disc_water_bubbling_underwater",
+    "soundscape:music_disc_waterfall_crashing_1",
+    "soundscape:music_disc_waterfall_crashing_2",
+    "soundscape:music_disc_wind_1",
+    "soundscape:music_disc_wind_2_strong",
+    "soundscape:music_disc_fire_burning_1",
+    "soundscape:music_disc_fire_burning_2",
+    "soundscape:music_disc_fire_burning_3",
+    "soundscape:music_disc_fire_burning_4",
+    "soundscape:music_disc_cogs_turning",
+    "soundscape:music_disc_large_room_hum",
+    "soundscape:music_disc_rocks_grinding",
+    "soundscape:music_disc_cityscape_airport",
+    "soundscape:music_disc_cityscape_brooklyn_playground",
+    "soundscape:music_disc_cityscape_london_streets",
+    "soundscape:music_disc_cityscape_ny_streets",
+    "soundscape:music_disc_cityscape_ny_subway",
+    "soundscape:music_disc_cityscape_party_club",
+    "soundscape:music_disc_cityscape_sf_subway_bart"
+  ]
+}

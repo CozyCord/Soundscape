@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {"item": "soundscape:ambience_disc"},
+    {"item": "minecraft:stone"},
+    {"item": "minecraft:cobblestone"},
+    {"item": "minecraft:pointed_dripstone"}
+  ],
+  "result": {
+    "id": "soundscape:music_disc_cave_ambience",
+    "count": 1
+  }
+}

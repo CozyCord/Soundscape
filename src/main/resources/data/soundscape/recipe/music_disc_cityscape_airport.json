@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "soundscape:ambience_disc",
+    "minecraft:iron_ingot",
+    "minecraft:glass",
+    "minecraft:firework_rocket"
+  ],
+  "result": {
+    "id": "soundscape:music_disc_cityscape_airport",
+    "count": 1
+  }
+}

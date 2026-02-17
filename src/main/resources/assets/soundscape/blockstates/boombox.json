@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "soundscape:block/boombox", "y": 180 },
+    "facing=south": { "model": "soundscape:block/boombox" },
+    "facing=west": { "model": "soundscape:block/boombox", "y": 90 },
+    "facing=east": { "model": "soundscape:block/boombox", "y": 270 }
+  }
+}

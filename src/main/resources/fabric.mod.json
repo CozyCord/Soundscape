@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "${id}",
+  "version": "${version}",
+  "name": "${name}",
+  "description": "${description}",
+  "authors": [
+    "CozyStudios"
+  ],
+  "contact": {
+    "homepage": "https://discord.gg/cozycord",
+    "sources": "https://github.com/CozyCord/Soundscape"
+  },
+  "license": "CC0-1.0",
+  "icon": "assets/soundscape/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "${group}.Soundscape"
+    ],
+    "client": [
+      "${group}.SoundscapeClient"
+    ]
+  },
+  "mixins": [
+    "soundscape.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": "*",
+    "minecraft": ">=${minecraftVersion}",
+    "java": ">=17",
+    "fabric-api": "*"
+  }
+}
