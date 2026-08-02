@@ -35,7 +35,7 @@ public class JukeboxSettings {
     }
 
     public void setVolume(int volume) {
-        this.volume = MathHelper.clamp(volume, 0, 100);
+        this.volume = MathHelper.clamp(volume, 0, 200);
     }
 
     public float getVolumeFloat() {
@@ -121,7 +121,7 @@ public class JukeboxSettings {
     public static JukeboxSettings fromNbt(NbtCompound nbt) {
         JukeboxSettings settings = new JukeboxSettings();
         //? if >=1.21.5 {
-        /*nbt.getInt("Volume").ifPresent(v -> settings.volume = MathHelper.clamp(v, 0, 100));
+        /*nbt.getInt("Volume").ifPresent(v -> settings.volume = MathHelper.clamp(v, 0, 200));
         nbt.getInt("Pitch").ifPresent(v -> settings.pitch = MathHelper.clamp(v, 50, 200));
         nbt.getInt("Range").ifPresent(v -> settings.range = MathHelper.clamp(v, 0, MAX_RANGE));
         nbt.getString("PlaybackMode").ifPresent(s -> {
@@ -136,7 +136,7 @@ public class JukeboxSettings {
         nbt.getBoolean("Paused").ifPresent(v -> settings.paused = v);
         *///?} else {
         if (nbt.contains("Volume")) {
-            settings.volume = MathHelper.clamp(nbt.getInt("Volume"), 0, 100);
+            settings.volume = MathHelper.clamp(nbt.getInt("Volume"), 0, 200);
         }
         if (nbt.contains("Pitch")) {
             settings.pitch = MathHelper.clamp(nbt.getInt("Pitch"), 50, 200);

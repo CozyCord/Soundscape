@@ -126,7 +126,7 @@ public class JukeboxScreen extends HandledScreen<JukeboxScreenHandler> {
                 SLIDER_WIDTH,
                 SLIDER_HEIGHT,
                 100,
-                0, 100,
+                0, 200,
                 "V", "Volume", "%"
         );
 

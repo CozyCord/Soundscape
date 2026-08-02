@@ -3,7 +3,6 @@ package net.cozystudios.soundscape.registry;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 import java.util.List;
 
 //? if >=1.21.5 {
@@ -22,21 +21,21 @@ public class AmbienceDiscItem extends Item {
     @Override
     public void appendTooltip(ItemStack stack, Item.TooltipContext context, TooltipDisplayComponent displayComponent, Consumer<Text> tooltip, TooltipType type) {
         super.appendTooltip(stack, context, displayComponent, tooltip, type);
-        tooltip.accept(Text.translatable(categoryKey).formatted(getCategoryColor(categoryKey)));
+        tooltip.accept(Text.translatable(categoryKey).styled(style -> style.withColor(getCategoryColor(categoryKey))));
     }
 
-    private static Formatting getCategoryColor(String key) {
+    private static int getCategoryColor(String key) {
         return switch (key) {
-            case "soundscape.category.nature" -> Formatting.GREEN;
-            case "soundscape.category.water" -> Formatting.AQUA;
-            case "soundscape.category.weather" -> Formatting.GRAY;
-            case "soundscape.category.fire" -> Formatting.RED;
-            case "soundscape.category.cityscape" -> Formatting.YELLOW;
-            case "soundscape.category.horror" -> Formatting.DARK_PURPLE;
-            case "soundscape.category.industrial" -> Formatting.DARK_GRAY;
-            case "soundscape.category.interior" -> Formatting.GOLD;
-            case "soundscape.category.outdoor" -> Formatting.DARK_GREEN;
-            default -> Formatting.GOLD;
+            case "soundscape.category.nature" -> 0x8db849;
+            case "soundscape.category.water" -> 0x62a5c9;
+            case "soundscape.category.weather" -> 0xffe57e;
+            case "soundscape.category.fire" -> 0xd67502;
+            case "soundscape.category.cityscape" -> 0x2c2f59;
+            case "soundscape.category.horror" -> 0x961f1f;
+            case "soundscape.category.industrial" -> 0xde815f;
+            case "soundscape.category.interior" -> 0x1a3823;
+            case "soundscape.category.outdoor" -> 0x9e6749;
+            default -> 0xFFFFFF;
         };
     }
 }
@@ -54,21 +53,21 @@ public class AmbienceDiscItem extends Item {
     @Override
     public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType type) {
         super.appendTooltip(stack, context, tooltip, type);
-        tooltip.add(Text.translatable(categoryKey).formatted(getCategoryColor(categoryKey)));
+        tooltip.add(Text.translatable(categoryKey).styled(style -> style.withColor(getCategoryColor(categoryKey))));
     }
 
-    private static Formatting getCategoryColor(String key) {
+    private static int getCategoryColor(String key) {
         return switch (key) {
-            case "soundscape.category.nature" -> Formatting.GREEN;
-            case "soundscape.category.water" -> Formatting.AQUA;
-            case "soundscape.category.weather" -> Formatting.GRAY;
-            case "soundscape.category.fire" -> Formatting.RED;
-            case "soundscape.category.cityscape" -> Formatting.YELLOW;
-            case "soundscape.category.horror" -> Formatting.DARK_PURPLE;
-            case "soundscape.category.industrial" -> Formatting.DARK_GRAY;
-            case "soundscape.category.interior" -> Formatting.GOLD;
-            case "soundscape.category.outdoor" -> Formatting.DARK_GREEN;
-            default -> Formatting.GOLD;
+            case "soundscape.category.nature" -> 0x8db849;
+            case "soundscape.category.water" -> 0x62a5c9;
+            case "soundscape.category.weather" -> 0xffe57e;
+            case "soundscape.category.fire" -> 0xd67502;
+            case "soundscape.category.cityscape" -> 0x2c2f59;
+            case "soundscape.category.horror" -> 0x961f1f;
+            case "soundscape.category.industrial" -> 0xde815f;
+            case "soundscape.category.interior" -> 0x1a3823;
+            case "soundscape.category.outdoor" -> 0x9e6749;
+            default -> 0xFFFFFF;
         };
     }
 }
@@ -90,21 +89,21 @@ public class AmbienceDiscItem extends MusicDiscItem {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(stack, world, tooltip, context);
-        tooltip.add(Text.translatable(categoryKey).formatted(getCategoryColor(categoryKey)));
+        tooltip.add(Text.translatable(categoryKey).styled(style -> style.withColor(getCategoryColor(categoryKey))));
     }
 
-    private static Formatting getCategoryColor(String key) {
+    private static int getCategoryColor(String key) {
         return switch (key) {
-            case "soundscape.category.nature" -> Formatting.GREEN;
-            case "soundscape.category.water" -> Formatting.AQUA;
-            case "soundscape.category.weather" -> Formatting.GRAY;
-            case "soundscape.category.fire" -> Formatting.RED;
-            case "soundscape.category.cityscape" -> Formatting.YELLOW;
-            case "soundscape.category.horror" -> Formatting.DARK_PURPLE;
-            case "soundscape.category.industrial" -> Formatting.DARK_GRAY;
-            case "soundscape.category.interior" -> Formatting.GOLD;
-            case "soundscape.category.outdoor" -> Formatting.DARK_GREEN;
-            default -> Formatting.GOLD;
+            case "soundscape.category.nature" -> 0x8db849;
+            case "soundscape.category.water" -> 0x62a5c9;
+            case "soundscape.category.weather" -> 0xffe57e;
+            case "soundscape.category.fire" -> 0xd67502;
+            case "soundscape.category.cityscape" -> 0x2c2f59;
+            case "soundscape.category.horror" -> 0x961f1f;
+            case "soundscape.category.industrial" -> 0xde815f;
+            case "soundscape.category.interior" -> 0x1a3823;
+            case "soundscape.category.outdoor" -> 0x9e6749;
+            default -> 0xFFFFFF;
         };
     }
 }

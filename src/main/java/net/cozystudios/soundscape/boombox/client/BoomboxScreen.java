@@ -71,6 +71,7 @@ public class BoomboxScreen extends Screen {
         urlField.setMaxLength(256);
         urlField.setText(currentUrl);
         urlField.setChangedListener(this::onUrlChanged);
+        if (currentUrl.isEmpty()) urlField.setSuggestion("Enter YouTube link...");
         addDrawableChild(urlField);
 
         playButton = ButtonWidget.builder(Text.literal("Play"), button -> sendPlay())
@@ -286,6 +287,7 @@ public class BoomboxScreen extends Screen {
     }
 
     private void onUrlChanged(String newUrl) {
+        urlField.setSuggestion(newUrl.isEmpty() ? "Enter YouTube link..." : null);
     }
 
     private void onVolumeChanged(double value) {

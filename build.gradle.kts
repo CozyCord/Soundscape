@@ -32,10 +32,10 @@ dependencies {
         exclude(group = "org.slf4j")
     }
 
-    shadowDeps("dev.lavalink.youtube:v2:1.17.0") {
+    shadowDeps("dev.lavalink.youtube:v2:1.18.2") {
         exclude(group = "org.slf4j")
     }
-    implementation("dev.lavalink.youtube:v2:1.17.0") {
+    implementation("dev.lavalink.youtube:v2:1.18.2") {
         exclude(group = "org.slf4j")
     }
 }

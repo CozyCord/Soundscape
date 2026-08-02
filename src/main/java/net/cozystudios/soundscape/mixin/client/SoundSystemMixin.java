@@ -5,13 +5,16 @@ import net.cozystudios.soundscape.sound.JukeboxSoundManager;
 import net.minecraft.client.sound.Channel;
 import net.minecraft.client.sound.SoundInstance;
 import net.minecraft.client.sound.SoundSystem;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.math.BlockPos;
+import org.lwjgl.openal.AL10;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -25,8 +28,21 @@ public class SoundSystemMixin {
     @Final
     private Map<SoundInstance, Channel.SourceManager> sources;
 
+    @Shadow
+    private float getSoundVolume(SoundCategory category) {
+        throw new AssertionError();
+    }
+
     private static final Map<BlockPos, Long> lastRestartTime = new HashMap<>();
     private static final long RESTART_COOLDOWN_MS = 300;
+
+    @Inject(method = "getAdjustedVolume(Lnet/minecraft/client/sound/SoundInstance;)F",
+            at = @At("HEAD"), cancellable = true)
+    private void soundscape$unclampedVolumeForJukebox(SoundInstance instance, CallbackInfoReturnable<Float> cir) {
+        if (instance instanceof EnhancedJukeboxSoundInstance) {
+            cir.setReturnValue(instance.getVolume() * getSoundVolume(instance.getCategory()));
+        }
+    }
 
     @Inject(method = "resumeAll", at = @At("TAIL"))
     private void soundscape$rePauseAfterResumeAll(CallbackInfo ci) {
@@ -80,6 +96,8 @@ public class SoundSystemMixin {
                             jukeboxSound.markStoppedByOpenAL();
                         } else {
                             source.setPitch(jukeboxSound.getPitch());
+                            int ptr = ((SourceAccessor) (Object) source).soundscape$getPointer();
+                            AL10.alSourcef(ptr, AL10.AL_MAX_GAIN, 2.0f);
                             source.setVolume(jukeboxSound.getVolume());
                         }
                     });

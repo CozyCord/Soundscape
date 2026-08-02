@@ -17,7 +17,8 @@
     "client.WorldEventHandlerMixin",
     "client.SoundManagerAccessor",
     "client.SoundSystemAccessor",
-    "client.SoundSystemMixin"
+    "client.SoundSystemMixin",
+    "client.SourceAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

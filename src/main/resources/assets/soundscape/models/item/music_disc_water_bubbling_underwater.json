@@ -1,1 +1,6 @@
-{"parent": "minecraft:item/generated", "textures": {"layer0": "soundscape:item/ambience_disc"}}
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "soundscape:item/water_disc"
+  }
+}

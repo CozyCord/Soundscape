@@ -49,8 +49,16 @@ public class BoomboxBlock extends BlockWithEntity {
     /*public static final EnumProperty<Direction> FACING = Properties.HORIZONTAL_FACING;
     *///?}
 
-    private static final VoxelShape SHAPE_NS = Block.createCuboidShape(3, 0, 6, 13, 7, 10);
-    private static final VoxelShape SHAPE_EW = Block.createCuboidShape(6, 0, 3, 10, 7, 13);
+    // Base + speakers span X:-6..22, Y:0..15, Z:0..16 for N/S facing.
+    // Antenna at top adds Y:17..18 across X:-5..21. Included as a separate box.
+    private static final VoxelShape SHAPE_NS = VoxelShapes.union(
+            Block.createCuboidShape(-6, 0, 0, 22, 15, 16),
+            Block.createCuboidShape(-5, 17, 7, 21, 18, 9)
+    );
+    private static final VoxelShape SHAPE_EW = VoxelShapes.union(
+            Block.createCuboidShape(0, 0, -6, 16, 15, 22),
+            Block.createCuboidShape(7, 17, -5, 9, 18, 21)
+    );
 
     //? if >=1.20.5 {
     private static final MapCodec<BoomboxBlock> CODEC = createCodec(BoomboxBlock::new);
@@ -68,7 +76,7 @@ public class BoomboxBlock extends BlockWithEntity {
 
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
+        return getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing());
     }
 
     @Override
