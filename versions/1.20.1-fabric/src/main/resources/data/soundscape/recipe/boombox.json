@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RRR",
+    "IJI",
+    "III"
+  ],
+  "key": {
+    "R": { "item": "minecraft:redstone" },
+    "I": { "item": "minecraft:iron_block" },
+    "J": { "item": "minecraft:jukebox" }
+  },
+  "result": {
+    "item": "soundscape:boombox",
+    "count": 1
+  }
+}
