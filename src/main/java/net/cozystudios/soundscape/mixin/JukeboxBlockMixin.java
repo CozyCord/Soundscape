@@ -210,6 +210,7 @@ public class JukeboxBlockMixin {
 
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         return ((Block)(Object)this).getDefaultState()
-                .with(Properties.HORIZONTAL_FACING, ctx.getHorizontalPlayerFacing().getOpposite());
+                .with(Properties.HORIZONTAL_FACING, ctx.getHorizontalPlayerFacing().getOpposite())
+                .with(net.cozystudios.soundscape.Soundscape.JUKEBOX_PLAYING, false);
     }
 }
