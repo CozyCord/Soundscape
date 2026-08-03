@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "soundscape:ambience_disc",
+    "minecraft:water_bucket",
+    "minecraft:slime_ball",
+    "minecraft:iron_bars"
+  ],
+  "result": {
+    "id": "soundscape:music_disc_sewer",
+    "count": 1
+  }
+}

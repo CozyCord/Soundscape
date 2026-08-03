@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "soundscape:ambience_disc",
+    "minecraft:note_block",
+    "minecraft:red_wool",
+    "minecraft:firework_rocket"
+  ],
+  "result": {
+    "id": "soundscape:music_disc_fairground",
+    "count": 1
+  }
+}

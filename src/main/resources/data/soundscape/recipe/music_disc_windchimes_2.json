@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "soundscape:ambience_disc",
+    "minecraft:bamboo",
+    "minecraft:gold_nugget",
+    "minecraft:string"
+  ],
+  "result": {
+    "id": "soundscape:music_disc_windchimes_2",
+    "count": 1
+  }
+}

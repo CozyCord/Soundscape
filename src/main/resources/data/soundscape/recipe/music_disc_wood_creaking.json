@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "soundscape:ambience_disc",
+    "minecraft:oak_planks",
+    "minecraft:oak_door",
+    "minecraft:stick"
+  ],
+  "result": {
+    "id": "soundscape:music_disc_wood_creaking",
+    "count": 1
+  }
+}

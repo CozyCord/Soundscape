@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "soundscape:ambience_disc",
+    "minecraft:water_bucket",
+    "minecraft:water_bucket",
+    "minecraft:sand"
+  ],
+  "result": {
+    "id": "soundscape:music_disc_river_stream_fast",
+    "count": 1
+  }
+}

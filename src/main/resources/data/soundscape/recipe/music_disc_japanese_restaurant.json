@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "soundscape:ambience_disc",
+    "minecraft:bamboo",
+    "minecraft:kelp",
+    "minecraft:salmon"
+  ],
+  "result": {
+    "id": "soundscape:music_disc_japanese_restaurant",
+    "count": 1
+  }
+}

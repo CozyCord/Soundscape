@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "soundscape:ambience_disc",
+    "minecraft:lily_pad",
+    "minecraft:slime_ball",
+    "#minecraft:saplings"
+  ],
+  "result": {
+    "id": "soundscape:music_disc_forest_swamp_1",
+    "count": 1
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "soundscape:ambience_disc",
+    "minecraft:cocoa_beans",
+    "minecraft:wheat",
+    "minecraft:bookshelf"
+  ],
+  "result": {
+    "id": "soundscape:music_disc_cafe_ambience",
+    "count": 1
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "soundscape:ambience_disc",
+    "minecraft:feather",
+    "#minecraft:saplings",
+    "minecraft:wheat_seeds"
+  ],
+  "result": {
+    "id": "soundscape:music_disc_forest_summer_birds",
+    "count": 1
+  }
+}
