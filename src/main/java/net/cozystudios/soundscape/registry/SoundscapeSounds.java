@@ -32,7 +32,6 @@ public class SoundscapeSounds {
 
     public static final SoundEvent AMBIENCE_CITYSCAPE_AIRPORT = register("ambience.cityscape_airport");
     public static final SoundEvent AMBIENCE_CITYSCAPE_BROOKLYN_PLAYGROUND = register("ambience.cityscape_brooklyn_playground");
-    public static final SoundEvent AMBIENCE_CITYSCAPE_LONDON_STREETS = register("ambience.cityscape_london_streets");
     public static final SoundEvent AMBIENCE_CITYSCAPE_NY_STREETS = register("ambience.cityscape_ny_streets");
     public static final SoundEvent AMBIENCE_CITYSCAPE_NY_SUBWAY = register("ambience.cityscape_ny_subway");
     public static final SoundEvent AMBIENCE_CITYSCAPE_PARTY_CLUB = register("ambience.cityscape_party_club");
@@ -104,7 +103,6 @@ public class SoundscapeSounds {
             case "rocks_grinding" -> AMBIENCE_ROCKS_GRINDING;
             case "cityscape_airport" -> AMBIENCE_CITYSCAPE_AIRPORT;
             case "cityscape_brooklyn_playground" -> AMBIENCE_CITYSCAPE_BROOKLYN_PLAYGROUND;
-            case "cityscape_london_streets" -> AMBIENCE_CITYSCAPE_LONDON_STREETS;
             case "cityscape_ny_streets" -> AMBIENCE_CITYSCAPE_NY_STREETS;
             case "cityscape_ny_subway" -> AMBIENCE_CITYSCAPE_NY_SUBWAY;
             case "cityscape_party_club" -> AMBIENCE_CITYSCAPE_PARTY_CLUB;

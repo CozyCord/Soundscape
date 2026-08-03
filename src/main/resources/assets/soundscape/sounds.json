@@ -14,9 +14,6 @@
   "ambience.cityscape_brooklyn_playground": {
     "sounds": [{"name": "soundscape:ambience/cityscape_brooklyn_playground", "stream": true}]
   },
-  "ambience.cityscape_london_streets": {
-    "sounds": [{"name": "soundscape:ambience/cityscape_london_streets", "stream": true}]
-  },
   "ambience.cityscape_ny_streets": {
     "sounds": [{"name": "soundscape:ambience/cityscape_ny_streets", "stream": true}]
   },

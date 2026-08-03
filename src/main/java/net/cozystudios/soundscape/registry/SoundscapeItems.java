@@ -49,7 +49,6 @@ public class SoundscapeItems {
     public static final Item MUSIC_DISC_CAVE_AMBIENCE = registerDisc("music_disc_cave_ambience", "cave_ambience", 1, 120, HORROR);
     public static final Item MUSIC_DISC_CITYSCAPE_AIRPORT = registerDisc("music_disc_cityscape_airport", "cityscape_airport", 2, 129, CITYSCAPE);
     public static final Item MUSIC_DISC_CITYSCAPE_BROOKLYN_PLAYGROUND = registerDisc("music_disc_cityscape_brooklyn_playground", "cityscape_brooklyn_playground", 3, 46, CITYSCAPE);
-    public static final Item MUSIC_DISC_CITYSCAPE_LONDON_STREETS = registerDisc("music_disc_cityscape_london_streets", "cityscape_london_streets", 4, 90, CITYSCAPE);
     public static final Item MUSIC_DISC_CITYSCAPE_NY_STREETS = registerDisc("music_disc_cityscape_ny_streets", "cityscape_ny_streets", 5, 129, CITYSCAPE);
     public static final Item MUSIC_DISC_CITYSCAPE_NY_SUBWAY = registerDisc("music_disc_cityscape_ny_subway", "cityscape_ny_subway", 6, 69, CITYSCAPE);
     public static final Item MUSIC_DISC_CITYSCAPE_PARTY_CLUB = registerDisc("music_disc_cityscape_party_club", "cityscape_party_club", 7, 77, CITYSCAPE);

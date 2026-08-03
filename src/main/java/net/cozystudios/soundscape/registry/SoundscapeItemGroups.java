@@ -77,7 +77,6 @@ public class SoundscapeItemGroups {
                         // === CITYSCAPE ===
                         entries.add(SoundscapeItems.MUSIC_DISC_CITYSCAPE_AIRPORT);
                         entries.add(SoundscapeItems.MUSIC_DISC_CITYSCAPE_BROOKLYN_PLAYGROUND);
-                        entries.add(SoundscapeItems.MUSIC_DISC_CITYSCAPE_LONDON_STREETS);
                         entries.add(SoundscapeItems.MUSIC_DISC_CITYSCAPE_NY_STREETS);
                         entries.add(SoundscapeItems.MUSIC_DISC_CITYSCAPE_NY_SUBWAY);
                         entries.add(SoundscapeItems.MUSIC_DISC_CITYSCAPE_PARTY_CLUB);
