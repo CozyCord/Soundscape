@@ -1,0 +1,28 @@
+# Gradle
+.gradle/
+build/
+bin/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+*.code-workspace
+
+# Runtime
+run/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Stonecutter version directories build outputs
+versions/*/build/
+versions/*/.gradle/
+versions/*/bin/
+
+# Generated
+src/main/generated/
+
+#Extras
+backups/

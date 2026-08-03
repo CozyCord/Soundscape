@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "soundscape:ambience_disc",
+    "minecraft:water_bucket",
+    "minecraft:sand",
+    "minecraft:turtle_scute"
+  ],
+  "result": {
+    "id": "soundscape:music_disc_ocean_waves_3",
+    "count": 1
+  }
+}

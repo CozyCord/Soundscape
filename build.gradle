@@ -1,0 +1,105 @@
+plugins {
+	id 'net.fabricmc.fabric-loom' version "${loom_version}"
+	id 'com.gradleup.shadow' version '9.0.0-beta4'
+	id 'maven-publish'
+}
+
+version = project.mod_version
+group = project.maven_group
+
+repositories {
+	mavenCentral()
+	maven { url = 'https://maven.lavalink.dev/releases' }
+}
+
+loom {
+	accessWidenerPath = file("src/main/resources/soundscape.accesswidener")
+}
+
+configurations {
+	shadowDeps
+}
+
+dependencies {
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+
+	// Shadowed audio libs — bundled into the built jar
+	shadowDeps("dev.arbjerg:lavaplayer:${project.lavaplayer_version}") {
+		exclude group: 'org.slf4j'
+	}
+	implementation("dev.arbjerg:lavaplayer:${project.lavaplayer_version}") {
+		exclude group: 'org.slf4j'
+	}
+	shadowDeps("dev.lavalink.youtube:v2:${project.lavalink_youtube_version}") {
+		exclude group: 'org.slf4j'
+	}
+	implementation("dev.lavalink.youtube:v2:${project.lavalink_youtube_version}") {
+		exclude group: 'org.slf4j'
+	}
+}
+
+processResources {
+	inputs.property "version", project.version
+
+	filesMatching("fabric.mod.json") {
+		expand "version": inputs.properties.version
+	}
+}
+
+tasks.withType(JavaCompile).configureEach {
+	it.options.release = 25
+}
+
+java {
+	sourceCompatibility = JavaVersion.VERSION_25
+	targetCompatibility = JavaVersion.VERSION_25
+}
+
+// shadowJar bundles the audio libs (lavaplayer + youtube v2) with relocated packages,
+// then the main `jar` task pulls those class files in. Loom 1.16.3's `jar` is the final
+// remapped output (no separate remapJar in MC 26.1), so bundling here yields a
+// ready-to-ship mod jar.
+tasks.named('shadowJar', com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar) {
+	configurations = [project.configurations.shadowDeps]
+	archiveClassifier.set('shadow-deps')
+	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+	exclude 'META-INF/MANIFEST.MF'
+	exclude 'META-INF/*.SF'
+	exclude 'META-INF/*.DSA'
+	exclude 'META-INF/*.RSA'
+	exclude 'META-INF/LICENSE*'
+	exclude 'META-INF/NOTICE*'
+	exclude 'META-INF/maven/**'
+
+	relocate('com.sedmelluq', 'net.cozystudios.soundscape.shadow.sedmelluq') {
+		exclude 'com.sedmelluq.discord.lavaplayer.natives.**'
+	}
+	relocate 'dev.arbjerg', 'net.cozystudios.soundscape.shadow.arbjerg'
+	relocate 'org.apache.http', 'net.cozystudios.soundscape.shadow.apache.http'
+	relocate 'org.apache.commons', 'net.cozystudios.soundscape.shadow.apache.commons'
+	relocate 'com.fasterxml', 'net.cozystudios.soundscape.shadow.fasterxml'
+	relocate 'org.jsoup', 'net.cozystudios.soundscape.shadow.jsoup'
+	relocate 'org.mozilla', 'net.cozystudios.soundscape.shadow.mozilla'
+	relocate 'dev.lavalink', 'net.cozystudios.soundscape.shadow.lavalink'
+}
+
+tasks.named('jar', Jar) {
+	dependsOn tasks.named('shadowJar')
+	from(zipTree(tasks.named('shadowJar').flatMap { it.archiveFile })) {
+		exclude 'META-INF/MANIFEST.MF'
+		exclude 'META-INF/*.SF'
+		exclude 'META-INF/*.DSA'
+		exclude 'META-INF/*.RSA'
+		exclude 'META-INF/LICENSE*'
+		exclude 'META-INF/NOTICE*'
+		exclude 'META-INF/maven/**'
+	}
+	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+	from("LICENSE") {
+		rename { "${it}_${project.name}" }
+	}
+}

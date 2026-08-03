@@ -1,0 +1,34 @@
+{
+	"schemaVersion": 1,
+	"id": "soundscape",
+	"version": "${version}",
+	"name": "Soundscape",
+	"description": "Enhance your Minecraft experience with immersive soundscapes",
+	"authors": [
+		"CozyStudios"
+	],
+	"contact": {
+		"homepage": "https://discord.gg/cozycord",
+		"sources": "https://github.com/CozyCord/Soundscape"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/soundscape/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"net.cozystudios.soundscape.Soundscape"
+		],
+		"client": [
+			"net.cozystudios.soundscape.SoundscapeClient"
+		]
+	},
+	"mixins": [
+		"soundscape.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.18.6",
+		"minecraft": "~26.1",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}

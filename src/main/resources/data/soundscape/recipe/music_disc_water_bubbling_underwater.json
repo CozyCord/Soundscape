@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "soundscape:ambience_disc",
+    "minecraft:water_bucket",
+    "minecraft:prismarine"
+  ],
+  "result": {
+    "id": "soundscape:music_disc_water_bubbling_underwater",
+    "count": 1
+  }
+}

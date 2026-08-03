@@ -1,0 +1,26 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.cozystudios.soundscape.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "BlockMixin",
+    "JukeboxBlockEntityAccessor",
+    "JukeboxBlockEntityMixin",
+    "JukeboxBlockMixin",
+    "JukeboxLuminanceMixin",
+    "JukeboxSongPlayerMixin"
+  ],
+  "client": [
+    "client.ChannelAccessor",
+    "client.LevelEventHandlerMixin",
+    "client.SoundEngineAccessor",
+    "client.SoundEngineMixin",
+    "client.SoundEnginePublishCapsMixin",
+    "client.SoundManagerAccessor",
+    "client.SoundSourceAccessor"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

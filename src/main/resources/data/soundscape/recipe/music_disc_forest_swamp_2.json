@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "soundscape:ambience_disc",
+    "minecraft:lily_pad",
+    "minecraft:vine",
+    "minecraft:brown_mushroom"
+  ],
+  "result": {
+    "id": "soundscape:music_disc_forest_swamp_2",
+    "count": 1
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "soundscape:ambience_disc",
+    "minecraft:iron_pickaxe",
+    "minecraft:cobblestone",
+    "minecraft:stone"
+  ],
+  "result": {
+    "id": "soundscape:music_disc_blocks_breaking",
+    "count": 1
+  }
+}

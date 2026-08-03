@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "soundscape:ambience_disc",
+    "minecraft:water_bucket",
+    "minecraft:water_bucket",
+    "minecraft:cobblestone"
+  ],
+  "result": {
+    "id": "soundscape:music_disc_raging_river",
+    "count": 1
+  }
+}

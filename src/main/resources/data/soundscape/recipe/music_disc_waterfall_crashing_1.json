@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "soundscape:ambience_disc",
+    "minecraft:water_bucket",
+    "minecraft:cobblestone",
+    "minecraft:mossy_cobblestone"
+  ],
+  "result": {
+    "id": "soundscape:music_disc_waterfall_crashing_1",
+    "count": 1
+  }
+}

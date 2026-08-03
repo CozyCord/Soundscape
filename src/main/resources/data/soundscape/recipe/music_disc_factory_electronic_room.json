@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "soundscape:ambience_disc",
+    "minecraft:redstone",
+    "minecraft:repeater",
+    "minecraft:comparator"
+  ],
+  "result": {
+    "id": "soundscape:music_disc_factory_electronic_room",
+    "count": 1
+  }
+}

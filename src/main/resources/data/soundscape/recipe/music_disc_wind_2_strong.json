@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "soundscape:ambience_disc",
+    "minecraft:feather",
+    "minecraft:feather",
+    "minecraft:phantom_membrane"
+  ],
+  "result": {
+    "id": "soundscape:music_disc_wind_2_strong",
+    "count": 1
+  }
+}

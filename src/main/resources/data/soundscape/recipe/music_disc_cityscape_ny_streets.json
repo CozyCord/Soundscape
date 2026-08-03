@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "soundscape:ambience_disc",
+    "minecraft:bricks",
+    "minecraft:yellow_stained_glass",
+    "minecraft:redstone_lamp"
+  ],
+  "result": {
+    "id": "soundscape:music_disc_cityscape_ny_streets",
+    "count": 1
+  }
+}

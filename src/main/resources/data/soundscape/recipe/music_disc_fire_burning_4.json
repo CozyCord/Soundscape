@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "soundscape:ambience_disc",
+    "minecraft:campfire"
+  ],
+  "result": {
+    "id": "soundscape:music_disc_fire_burning_4",
+    "count": 1
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "soundscape:ambience_disc",
+    "minecraft:coal",
+    "minecraft:flint_and_steel"
+  ],
+  "result": {
+    "id": "soundscape:music_disc_fire_burning_1",
+    "count": 1
+  }
+}

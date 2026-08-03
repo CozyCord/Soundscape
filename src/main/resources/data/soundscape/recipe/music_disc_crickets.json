@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "soundscape:ambience_disc",
+    "#minecraft:saplings",
+    "minecraft:tall_grass",
+    "minecraft:spider_eye"
+  ],
+  "result": {
+    "id": "soundscape:music_disc_crickets",
+    "count": 1
+  }
+}

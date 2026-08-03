@@ -1,0 +1,161 @@
+{
+  "ambience.blocks_breaking": {
+    "sounds": [{"name": "soundscape:ambience/blocks_breaking", "stream": false}]
+  },
+  "ambience.cafe_ambience": {
+    "sounds": [{"name": "soundscape:ambience/cafe_ambience", "stream": false}]
+  },
+  "ambience.cave": {
+    "sounds": [{"name": "soundscape:ambience/cave_ambience", "stream": false}]
+  },
+  "ambience.cityscape_airport": {
+    "sounds": [{"name": "soundscape:ambience/cityscape_airport", "stream": false}]
+  },
+  "ambience.cityscape_brooklyn_playground": {
+    "sounds": [{"name": "soundscape:ambience/cityscape_brooklyn_playground", "stream": false}]
+  },
+  "ambience.cityscape_ny_streets": {
+    "sounds": [{"name": "soundscape:ambience/cityscape_ny_streets", "stream": false}]
+  },
+  "ambience.cityscape_ny_subway": {
+    "sounds": [{"name": "soundscape:ambience/cityscape_ny_subway_1", "stream": false}]
+  },
+  "ambience.cityscape_party_club": {
+    "sounds": [{"name": "soundscape:ambience/cityscape_party_club", "stream": false}]
+  },
+  "ambience.cityscape_sf_subway_bart": {
+    "sounds": [{"name": "soundscape:ambience/cityscape_sf_subway_bart_station", "stream": false}]
+  },
+  "ambience.cityscape_skatepark": {
+    "sounds": [{"name": "soundscape:ambience/cityscape_skatepark", "stream": false}]
+  },
+  "ambience.cogs_turning": {
+    "sounds": [{"name": "soundscape:ambience/cogs_turning", "stream": false}]
+  },
+  "ambience.crickets": {
+    "sounds": [{"name": "soundscape:ambience/crickets", "stream": false}]
+  },
+  "ambience.factory_basement": {
+    "sounds": [{"name": "soundscape:ambience/factory_basement", "stream": false}]
+  },
+  "ambience.factory_electronic_room": {
+    "sounds": [{"name": "soundscape:ambience/factory_electronic_room", "stream": false}]
+  },
+  "ambience.factory_hum": {
+    "sounds": [{"name": "soundscape:ambience/factory_hum", "stream": false}]
+  },
+  "ambience.factory_machine_room": {
+    "sounds": [{"name": "soundscape:ambience/factory_machine_room", "stream": false}]
+  },
+  "ambience.fairground": {
+    "sounds": [{"name": "soundscape:ambience/fairground", "stream": false}]
+  },
+  "ambience.fire_burning_1": {
+    "sounds": [{"name": "soundscape:ambience/fire_burning_1", "stream": false}]
+  },
+  "ambience.fire_burning_2": {
+    "sounds": [{"name": "soundscape:ambience/fire_burning_2", "stream": false}]
+  },
+  "ambience.fire_burning_3": {
+    "sounds": [{"name": "soundscape:ambience/fire_burning_3", "stream": false}]
+  },
+  "ambience.fire_burning_4": {
+    "sounds": [{"name": "soundscape:ambience/fire_burning_4", "stream": false}]
+  },
+  "ambience.forest_rain": {
+    "sounds": [{"name": "soundscape:ambience/forest_rain", "stream": false}]
+  },
+  "ambience.forest_summer_birds": {
+    "sounds": [{"name": "soundscape:ambience/forest_summer_birds", "stream": false}]
+  },
+  "ambience.forest_swamp_1": {
+    "sounds": [{"name": "soundscape:ambience/forest_swamp_1", "stream": false}]
+  },
+  "ambience.forest_swamp_2": {
+    "sounds": [{"name": "soundscape:ambience/forest_swamp_2", "stream": false}]
+  },
+  "ambience.horror_abandoned_church": {
+    "sounds": [{"name": "soundscape:ambience/horror_abandoned_church", "stream": false}]
+  },
+  "ambience.horror_cave_ambience": {
+    "sounds": [{"name": "soundscape:ambience/horror_cave_ambience", "stream": false}]
+  },
+  "ambience.horror_scary_storm": {
+    "sounds": [{"name": "soundscape:ambience/horror_scary_storm", "stream": false}]
+  },
+  "ambience.japanese_restaurant": {
+    "sounds": [{"name": "soundscape:ambience/japanese_restaurant", "stream": false}]
+  },
+  "ambience.large_room_hum": {
+    "sounds": [{"name": "soundscape:ambience/large_room_hum", "stream": false}]
+  },
+  "ambience.leaves_rustling": {
+    "sounds": [{"name": "soundscape:ambience/leaves_rustling", "stream": false}]
+  },
+  "ambience.ocean_waves_1": {
+    "sounds": [{"name": "soundscape:ambience/ocean_waves_1", "stream": false}]
+  },
+  "ambience.ocean_waves_2": {
+    "sounds": [{"name": "soundscape:ambience/ocean_waves_2", "stream": false}]
+  },
+  "ambience.ocean_waves_3": {
+    "sounds": [{"name": "soundscape:ambience/ocean_waves_3", "stream": false}]
+  },
+  "ambience.raging_river": {
+    "sounds": [{"name": "soundscape:ambience/raging_river", "stream": false}]
+  },
+  "ambience.river_stream": {
+    "sounds": [{"name": "soundscape:ambience/river_stream", "stream": false}]
+  },
+  "ambience.river_stream_boulders": {
+    "sounds": [{"name": "soundscape:ambience/river_stream_boulders", "stream": false}]
+  },
+  "ambience.river_stream_fast": {
+    "sounds": [{"name": "soundscape:ambience/river_stream_fast", "stream": false}]
+  },
+  "ambience.rocks_grinding": {
+    "sounds": [{"name": "soundscape:ambience/rocks_grinding", "stream": false}]
+  },
+  "ambience.sewer": {
+    "sounds": [{"name": "soundscape:ambience/sewer", "stream": false}]
+  },
+  "ambience.thunderstorm": {
+    "sounds": [{"name": "soundscape:ambience/thunderstorm", "stream": false}]
+  },
+  "ambience.townsfolk_chatter": {
+    "sounds": [{"name": "soundscape:ambience/townsfolk_chatter", "stream": false}]
+  },
+  "ambience.water_bubbling": {
+    "sounds": [{"name": "soundscape:ambience/water_bubbling", "stream": false}]
+  },
+  "ambience.water_bubbling_underwater": {
+    "sounds": [{"name": "soundscape:ambience/water_bubbling_underwater", "stream": false}]
+  },
+  "ambience.waterfall_crashing_1": {
+    "sounds": [{"name": "soundscape:ambience/waterfall_crashing_1", "stream": false}]
+  },
+  "ambience.waterfall_crashing_2": {
+    "sounds": [{"name": "soundscape:ambience/waterfall_crashing_2", "stream": false}]
+  },
+  "ambience.waterfall_crashing_3": {
+    "sounds": [{"name": "soundscape:ambience/waterfall_crashing_3", "stream": false}]
+  },
+  "ambience.waterfall_crashing_4": {
+    "sounds": [{"name": "soundscape:ambience/waterfall_crashing_4", "stream": false}]
+  },
+  "ambience.wind_1": {
+    "sounds": [{"name": "soundscape:ambience/wind_1", "stream": false}]
+  },
+  "ambience.wind_2_strong": {
+    "sounds": [{"name": "soundscape:ambience/wind_2_strong", "stream": false}]
+  },
+  "ambience.windchimes_1": {
+    "sounds": [{"name": "soundscape:ambience/windchimes_1", "stream": false}]
+  },
+  "ambience.windchimes_2": {
+    "sounds": [{"name": "soundscape:ambience/windchimes_2", "stream": false}]
+  },
+  "ambience.wood_creaking": {
+    "sounds": [{"name": "soundscape:ambience/wood_creaking", "stream": false}]
+  }
+}

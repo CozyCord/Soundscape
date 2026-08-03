@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "soundscape:ambience_disc",
+    "minecraft:powered_rail",
+    "minecraft:iron_block",
+    "minecraft:sea_lantern"
+  ],
+  "result": {
+    "id": "soundscape:music_disc_cityscape_sf_subway_bart",
+    "count": 1
+  }
+}

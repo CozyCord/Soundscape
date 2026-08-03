@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "soundscape:ambience_disc",
+    "minecraft:oak_leaves",
+    "minecraft:birch_leaves",
+    "minecraft:spruce_leaves"
+  ],
+  "result": {
+    "id": "soundscape:music_disc_leaves_rustling",
+    "count": 1
+  }
+}
