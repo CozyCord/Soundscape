@@ -18,6 +18,7 @@
     "client.SoundManagerAccessor",
     "client.SoundSystemAccessor",
     "client.SoundSystemMixin",
+    "client.SoundEnginePublishCapsMixin",
     "client.SourceAccessor"
   ],
   "injectors": {

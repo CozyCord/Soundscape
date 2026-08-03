@@ -49,8 +49,6 @@ public class BoomboxBlock extends BlockWithEntity {
     /*public static final EnumProperty<Direction> FACING = Properties.HORIZONTAL_FACING;
     *///?}
 
-    // Base + speakers span X:-6..22, Y:0..15, Z:0..16 for N/S facing.
-    // Antenna at top adds Y:17..18 across X:-5..21. Included as a separate box.
     private static final VoxelShape SHAPE_NS = VoxelShapes.union(
             Block.createCuboidShape(-6, 0, 0, 22, 15, 16),
             Block.createCuboidShape(-5, 17, 7, 21, 18, 9)

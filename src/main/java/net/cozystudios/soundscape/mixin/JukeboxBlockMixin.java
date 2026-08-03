@@ -15,6 +15,7 @@ import net.minecraft.block.Block;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import net.cozystudios.soundscape.jukebox.JukeboxSettingsProvider;
 import net.cozystudios.soundscape.jukebox.ShuffleQueue;
@@ -180,14 +181,27 @@ public class JukeboxBlockMixin {
     //?}
 
     @Unique
-    private static final VoxelShape OUTLINE_SHAPE = Block.createCuboidShape(0, 0, 0, 16, 32, 16);
+    private static final VoxelShape SHAPE_NS = Block.createCuboidShape(-3, 0, 2, 19, 29, 14);
+    @Unique
+    private static final VoxelShape SHAPE_EW = Block.createCuboidShape(2, 0, -3, 14, 29, 19);
+    @Unique
+    private static final VoxelShape COLLISION_SHAPE = Block.createCuboidShape(0, 0, 0, 16, 32, 16);
 
     //? if >=1.21.2 {
     /*protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
     *///?} else {
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
     //?}
-        return OUTLINE_SHAPE;
+        Direction facing = state.get(Properties.HORIZONTAL_FACING);
+        return (facing == Direction.EAST || facing == Direction.WEST) ? SHAPE_EW : SHAPE_NS;
+    }
+
+    //? if >=1.21.2 {
+    /*protected VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+    *///?} else {
+    public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+    //?}
+        return COLLISION_SHAPE;
     }
 
     //? if >=1.21.2 {

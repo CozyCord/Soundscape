@@ -6,6 +6,16 @@ import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
 import com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager;
 import dev.lavalink.youtube.YoutubeAudioSourceManager;
+import dev.lavalink.youtube.clients.Android;
+import dev.lavalink.youtube.clients.AndroidMusic;
+import dev.lavalink.youtube.clients.AndroidVr;
+import dev.lavalink.youtube.clients.Ios;
+import dev.lavalink.youtube.clients.MWeb;
+import dev.lavalink.youtube.clients.Music;
+import dev.lavalink.youtube.clients.Tv;
+import dev.lavalink.youtube.clients.TvHtml5Simply;
+import dev.lavalink.youtube.clients.Web;
+import dev.lavalink.youtube.clients.WebEmbedded;
 import com.sedmelluq.discord.lavaplayer.tools.FriendlyException;
 import com.sedmelluq.discord.lavaplayer.track.AudioPlaylist;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
@@ -55,7 +65,18 @@ public class BoomboxAudioManager {
             try {
                 lavaPlayerManager = new DefaultAudioPlayerManager();
                 lavaPlayerManager.getConfiguration().setOutputFormat(StandardAudioDataFormats.DISCORD_PCM_S16_BE);
-                lavaPlayerManager.registerSourceManager(new YoutubeAudioSourceManager(true));
+                lavaPlayerManager.registerSourceManager(new YoutubeAudioSourceManager(true,
+                        new Music(),
+                        new Web(),
+                        new MWeb(),
+                        new WebEmbedded(),
+                        new AndroidVr(),
+                        new Android(),
+                        new AndroidMusic(),
+                        new Ios(),
+                        new TvHtml5Simply(),
+                        new Tv()
+                ));
                 initialized = true;
                 Soundscape.LOGGER.info("LavaPlayer initialized successfully for Boombox");
             } catch (Exception e) {

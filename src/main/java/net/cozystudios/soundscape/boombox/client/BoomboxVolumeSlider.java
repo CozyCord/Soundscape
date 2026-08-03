@@ -27,10 +27,6 @@ public class BoomboxVolumeSlider extends SliderWidget {
         onValueChanged.accept(this.value);
     }
 
-    /**
-     * Updates slider position without triggering the callback.
-     * Named differently from setValue to avoid overriding SliderWidget's internal setValue.
-     */
     public void setValueFromServer(double value) {
         this.value = Math.max(0.0, Math.min(1.0, value));
         updateMessage();

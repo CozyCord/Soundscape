@@ -78,6 +78,13 @@ public class BoomboxAudioInstance {
     }
 
     public void initialize() {
+        try {
+            org.lwjgl.openal.AL.getCapabilities();
+        } catch (IllegalStateException noCaps) {
+            destroyed = true;
+            return;
+        }
+
         alSource = AL10.alGenSources();
         AL10.alSourcei(alSource, AL10.AL_SOURCE_RELATIVE, AL10.AL_FALSE);
         AL10.alSource3f(alSource, AL10.AL_POSITION, 0f, 0f, 0f);

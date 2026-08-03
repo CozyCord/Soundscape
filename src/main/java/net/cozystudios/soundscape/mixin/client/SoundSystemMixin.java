@@ -28,10 +28,17 @@ public class SoundSystemMixin {
     @Final
     private Map<SoundInstance, Channel.SourceManager> sources;
 
+    //? if >=1.21.11 {
+    /*@Shadow
+    private float getAdjustedVolume(float volume, SoundCategory category) {
+        throw new AssertionError();
+    }
+    *///?} else {
     @Shadow
     private float getSoundVolume(SoundCategory category) {
         throw new AssertionError();
     }
+    //?}
 
     private static final Map<BlockPos, Long> lastRestartTime = new HashMap<>();
     private static final long RESTART_COOLDOWN_MS = 300;
@@ -40,7 +47,12 @@ public class SoundSystemMixin {
             at = @At("HEAD"), cancellable = true)
     private void soundscape$unclampedVolumeForJukebox(SoundInstance instance, CallbackInfoReturnable<Float> cir) {
         if (instance instanceof EnhancedJukeboxSoundInstance) {
-            cir.setReturnValue(instance.getVolume() * getSoundVolume(instance.getCategory()));
+            //? if >=1.21.11 {
+            /*float catMultiplier = getAdjustedVolume(1.0f, instance.getCategory());
+            *///?} else {
+            float catMultiplier = getSoundVolume(instance.getCategory());
+            //?}
+            cir.setReturnValue(instance.getVolume() * catMultiplier);
         }
     }
 

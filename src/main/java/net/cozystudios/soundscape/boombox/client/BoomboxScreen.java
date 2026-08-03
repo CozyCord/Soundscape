@@ -63,7 +63,6 @@ public class BoomboxScreen extends Screen {
         guiX = (this.width - GUI_WIDTH) / 2;
         guiY = (this.height - GUI_HEIGHT) / 2;
 
-        // Widget area starts at guiX+80 (centered 200px wide area within 360px texture)
         int wx = guiX + 80;
         int wy = guiY + 55;
 
@@ -138,7 +137,6 @@ public class BoomboxScreen extends Screen {
     //? if >=1.20.5 {
     @Override
     public void renderBackground(DrawContext context, int mouseX, int mouseY, float delta) {
-        // No-op: we handle background in render() to control draw order
     }
     //?}
 
@@ -152,7 +150,6 @@ public class BoomboxScreen extends Screen {
         }
         //?}
 
-        // Draw boombox texture
         //? if 1.21.11 {
         /*context.drawTexture(net.minecraft.client.gl.RenderPipelines.GUI_TEXTURED, TEXTURE, guiX, guiY, 0.0f, 0.0f, GUI_WIDTH, GUI_HEIGHT, GUI_WIDTH, GUI_HEIGHT);
         *///?} elif >=1.21.4 {
@@ -165,10 +162,8 @@ public class BoomboxScreen extends Screen {
 
         int centerX = this.width / 2;
 
-        // Title text (in the badge area at top of cassette deck)
         context.drawCenteredTextWithShadow(this.textRenderer, Text.literal("Boombox"), centerX, guiY + 42, 0xFFFFFFFF);
 
-        // Track info text (in the display panel)
         String trackInfo = BoomboxAudioManager.getInstance().getTrackInfo(boomboxPos);
         if (!trackInfo.isEmpty()) {
             int panelLeft = guiX + 72;
@@ -210,7 +205,6 @@ public class BoomboxScreen extends Screen {
             }
         }
 
-        // Status text
         int statusColor = switch (currentState) {
             case 1 -> 0xFF55FF55;
             case 2 -> 0xFFAAAAAA;
@@ -220,7 +214,6 @@ public class BoomboxScreen extends Screen {
         };
         context.drawCenteredTextWithShadow(this.textRenderer, Text.literal("Status: " + statusText), centerX, guiY + 222, statusColor);
 
-        // Error text
         if (!errorText.isEmpty()) {
             context.drawCenteredTextWithShadow(this.textRenderer, Text.literal(errorText), centerX, guiY + 237, 0xFFFF5555);
         }
