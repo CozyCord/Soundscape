@@ -96,7 +96,7 @@ public class BoomboxAudioInstance {
         alSource = AL10.alGenSources();
         AL10.alSourcei(alSource, AL10.AL_SOURCE_RELATIVE, AL10.AL_FALSE);
         AL10.alSource3f(alSource, AL10.AL_POSITION, 0f, 0f, 0f);
-        AL10.alSourcef(alSource, AL10.AL_GAIN, volume);
+        AL10.alSourcef(alSource, AL10.AL_GAIN, 0f);
         AL10.alSourcef(alSource, AL10.AL_ROLLOFF_FACTOR, 0f);
 
         alBuffers = new int[BUFFER_COUNT];
@@ -200,6 +200,8 @@ public class BoomboxAudioInstance {
         } else {
             gain = 0f;
         }
+
+        gain *= net.cozystudios.soundscape.sound.BoomboxSoundCategory.getEffectiveVolume();
         AL10.alSourcef(alSource, AL10.AL_GAIN, gain);
     }
 
@@ -291,9 +293,6 @@ public class BoomboxAudioInstance {
 
     public void setVolume(float volume) {
         this.volume = volume;
-        if (alSource != -1) {
-            AL10.alSourcef(alSource, AL10.AL_GAIN, volume);
-        }
     }
 
     public void setLoop(boolean loop) {

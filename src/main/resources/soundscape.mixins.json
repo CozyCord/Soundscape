@@ -15,6 +15,7 @@
     "client.ClientWorldMixin",
     "client.WorldRendererMixin",
     "client.WorldEventHandlerMixin",
+    "client.SoundCategoryAccessor",
     "client.SoundManagerAccessor",
     "client.SoundSystemAccessor",
     "client.SoundSystemMixin",

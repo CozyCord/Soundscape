@@ -5,6 +5,7 @@ import net.cozystudios.soundscape.network.SoundscapeClientNetworking;
 import net.cozystudios.soundscape.registry.SoundscapeBlocks;
 import net.cozystudios.soundscape.registry.SoundscapeScreenHandlers;
 import net.cozystudios.soundscape.screen.JukeboxScreen;
+import net.cozystudios.soundscape.sound.BoomboxSoundCategory;
 import net.cozystudios.soundscape.sound.JukeboxSoundManager;
 import net.fabricmc.api.ClientModInitializer;
 //? if <1.21.6 {
@@ -27,6 +28,7 @@ public class SoundscapeClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
+        BoomboxSoundCategory.register();
         SoundscapeClientNetworking.registerClient();
         HandledScreens.register(SoundscapeScreenHandlers.JUKEBOX_SCREEN_HANDLER, JukeboxScreen::new);
 
