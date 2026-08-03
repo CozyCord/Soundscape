@@ -66,16 +66,16 @@ public class BoomboxAudioManager {
                 lavaPlayerManager = new DefaultAudioPlayerManager();
                 lavaPlayerManager.getConfiguration().setOutputFormat(StandardAudioDataFormats.DISCORD_PCM_S16_BE);
                 lavaPlayerManager.registerSourceManager(new YoutubeAudioSourceManager(true,
-                        new Music(),
-                        new Web(),
-                        new MWeb(),
-                        new WebEmbedded(),
-                        new AndroidVr(),
-                        new Android(),
-                        new AndroidMusic(),
-                        new Ios(),
                         new TvHtml5Simply(),
-                        new Tv()
+                        new Tv(),
+                        new Ios(),
+                        new AndroidVr(),
+                        new AndroidMusic(),
+                        new Android(),
+                        new Music(),
+                        new WebEmbedded(),
+                        new Web(),
+                        new MWeb()
                 ));
                 initialized = true;
                 Soundscape.LOGGER.info("LavaPlayer initialized successfully for Boombox");
@@ -302,6 +302,13 @@ public class BoomboxAudioManager {
 
             BlockPos boomboxPos = entry.getKey();
 
+            if (instance.needsClientRetry()) {
+                instance.destroy();
+                Soundscape.LOGGER.error("Boombox at {} playback failed (YouTube signature error - try a different link)", boomboxPos);
+                updateScreenError(boomboxPos, "YouTube playback error - try a different link");
+                return true;
+            }
+
             if (mc.world != null && !(mc.world.getBlockEntity(boomboxPos) instanceof net.cozystudios.soundscape.boombox.BoomboxBlockEntity)) {
                 instance.destroy();
                 boomboxRanges.remove(boomboxPos);
@@ -346,6 +353,9 @@ public class BoomboxAudioManager {
         }
         activeBoomboxes.clear();
         boomboxRanges.clear();
+        cachedStates.clear();
+        pausedByGame.clear();
+        gamePaused = false;
     }
 
     public void cleanup() {

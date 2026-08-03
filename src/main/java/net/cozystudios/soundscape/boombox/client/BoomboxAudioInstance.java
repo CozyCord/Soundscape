@@ -40,6 +40,7 @@ public class BoomboxAudioInstance {
     private volatile int trackIndex;
     private volatile AudioTrack nextTrackToPlay = null;
     private volatile boolean needsRestart = false;
+    private volatile boolean needsClientRetry = false;
 
     public BoomboxAudioInstance(AudioPlayer audioPlayer, float volume, boolean loop, List<AudioTrack> playlist) {
         this.audioPlayer = audioPlayer;
@@ -73,6 +74,13 @@ public class BoomboxAudioInstance {
                     nextTrackToPlay = track.makeClone();
                     needsRestart = true;
                 }
+            }
+
+            @Override
+            public void onTrackException(AudioPlayer player, AudioTrack track, com.sedmelluq.discord.lavaplayer.tools.FriendlyException exception) {
+                net.cozystudios.soundscape.Soundscape.LOGGER.warn(
+                        "Boombox track playback error, will retry with different client: {}", exception.getMessage());
+                needsClientRetry = true;
             }
         });
     }
@@ -317,5 +325,9 @@ public class BoomboxAudioInstance {
 
     public boolean isDestroyed() {
         return destroyed;
+    }
+
+    public boolean needsClientRetry() {
+        return needsClientRetry;
     }
 }

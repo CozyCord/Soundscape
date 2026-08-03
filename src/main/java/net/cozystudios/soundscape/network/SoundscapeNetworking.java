@@ -191,6 +191,20 @@ public class SoundscapeNetworking {
         }
     }
 
+    public record BoomboxStateRequestPayload(BlockPos pos) implements CustomPayload {
+        public static final Id<BoomboxStateRequestPayload> ID = new Id<>(SoundscapeId.of("boombox_state_request"));
+        public static final PacketCodec<RegistryByteBuf, BoomboxStateRequestPayload> CODEC = PacketCodec.tuple(
+                BlockPos.PACKET_CODEC, BoomboxStateRequestPayload::pos,
+                BoomboxStateRequestPayload::new
+        );
+
+        @Override
+        public Id<? extends CustomPayload> getId() {
+            return ID;
+        }
+    }
+
+
     public record BoomboxStateSyncPayload(BlockPos pos, String url, int stateId, float volume,
                                           int loop, String errorMessage, long trackPositionMs,
                                           int trackIndex, int range) implements CustomPayload {
@@ -237,6 +251,7 @@ public class SoundscapeNetworking {
     public static final Identifier JUKEBOX_SHUFFLE_NEXT_C2S = SoundscapeId.of("jukebox_shuffle_next");
     public static final Identifier JUKEBOX_PARTICLES_C2S = SoundscapeId.of("jukebox_particles");
     public static final Identifier BOOMBOX_ACTION_C2S = SoundscapeId.of("boombox_action");
+    public static final Identifier BOOMBOX_STATE_REQUEST_C2S = SoundscapeId.of("boombox_state_request");
     public static final Identifier BOOMBOX_STATE_SYNC_S2C = SoundscapeId.of("boombox_state_sync");
     *///?}
 
@@ -299,6 +314,7 @@ public class SoundscapeNetworking {
         });
 
         PayloadTypeRegistry.playC2S().register(BoomboxActionPayload.ID, BoomboxActionPayload.CODEC);
+        PayloadTypeRegistry.playC2S().register(BoomboxStateRequestPayload.ID, BoomboxStateRequestPayload.CODEC);
         PayloadTypeRegistry.playS2C().register(BoomboxStateSyncPayload.ID, BoomboxStateSyncPayload.CODEC);
 
         ServerPlayNetworking.registerGlobalReceiver(BoomboxActionPayload.ID, (payload, context) -> {
@@ -306,6 +322,14 @@ public class SoundscapeNetworking {
             MinecraftServer server = getServerFromPlayer(player);
             server.execute(() -> {
                 handleBoomboxAction(server, player, payload.pos(), payload.action(), payload.url(), payload.volume(), payload.positionMs());
+            });
+        });
+
+        ServerPlayNetworking.registerGlobalReceiver(BoomboxStateRequestPayload.ID, (payload, context) -> {
+            ServerPlayerEntity player = context.player();
+            MinecraftServer server = getServerFromPlayer(player);
+            server.execute(() -> {
+                handleBoomboxStateRequest(server, player, payload.pos());
             });
         });
         //?} else {
@@ -353,6 +377,11 @@ public class SoundscapeNetworking {
             float volume = buf.readFloat();
             long positionMs = buf.readLong();
             server.execute(() -> handleBoomboxAction(server, player, pos, action, url, volume, positionMs));
+        });
+
+        ServerPlayNetworking.registerGlobalReceiver(BOOMBOX_STATE_REQUEST_C2S, (server, player, handler, buf, responseSender) -> {
+            BlockPos pos = buf.readBlockPos();
+            server.execute(() -> handleBoomboxStateRequest(server, player, pos));
         });
         *///?}
     }
@@ -726,6 +755,14 @@ public class SoundscapeNetworking {
             boombox.handleClientAction((byte) action, url, volume, positionMs);
         } else {
             net.cozystudios.soundscape.Soundscape.LOGGER.warn("[Boombox] Server: block entity at {} is not BoomboxBlockEntity", pos);
+        }
+    }
+
+    private static void handleBoomboxStateRequest(MinecraftServer server, ServerPlayerEntity player, BlockPos pos) {
+        ServerWorld world = findWorldWithBoombox(server, pos);
+        if (world == null) return;
+        if (world.getBlockEntity(pos) instanceof net.cozystudios.soundscape.boombox.BoomboxBlockEntity boombox) {
+            boombox.syncToPlayer(player);
         }
     }
 

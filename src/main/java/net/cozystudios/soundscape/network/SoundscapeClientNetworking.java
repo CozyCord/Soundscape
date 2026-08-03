@@ -164,6 +164,16 @@ public class SoundscapeClientNetworking {
         *///?}
     }
 
+    public static void requestBoomboxState(BlockPos pos) {
+        //? if >=1.20.5 {
+        ClientPlayNetworking.send(new SoundscapeNetworking.BoomboxStateRequestPayload(pos));
+        //?} else {
+        /*PacketByteBuf buf = PacketByteBufs.create();
+        buf.writeBlockPos(pos);
+        ClientPlayNetworking.send(SoundscapeId.of("boombox_state_request"), buf);
+        *///?}
+    }
+
     private static void handleBoomboxStateSync(BlockPos pos, String url, int stateId, float volume,
                                                boolean loop, String errorMessage, long trackPositionMs,
                                                int trackIndex, int range) {

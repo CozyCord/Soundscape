@@ -283,10 +283,6 @@ public class BoomboxBlockEntity extends BlockEntity {
         view.putFloat("Volume", volume);
         view.putBoolean("Loop", loop);
         view.putInt("Range", range);
-        view.putInt("State", state.id);
-        view.putString("ErrorMessage", errorMessage);
-        view.putLong("TrackPositionMs", trackPositionMs);
-        view.putInt("TrackIndex", trackIndex);
     }
 
     @Override
@@ -296,10 +292,6 @@ public class BoomboxBlockEntity extends BlockEntity {
         this.volume = view.getFloat("Volume", 0.5f);
         this.loop = view.getBoolean("Loop", false);
         this.range = view.getInt("Range", 48);
-        this.state = BoomboxState.fromId(view.getInt("State", 0));
-        this.errorMessage = view.getString("ErrorMessage", "");
-        this.trackPositionMs = view.getLong("TrackPositionMs", 0L);
-        this.trackIndex = view.getInt("TrackIndex", 0);
     }
     *///?} elif >=1.20.5 {
     @Override
@@ -309,10 +301,6 @@ public class BoomboxBlockEntity extends BlockEntity {
         nbt.putFloat("Volume", volume);
         nbt.putBoolean("Loop", loop);
         nbt.putInt("Range", range);
-        nbt.putInt("State", state.id);
-        nbt.putString("ErrorMessage", errorMessage);
-        nbt.putLong("TrackPositionMs", trackPositionMs);
-        nbt.putInt("TrackIndex", trackIndex);
     }
 
     @Override
@@ -322,10 +310,6 @@ public class BoomboxBlockEntity extends BlockEntity {
         this.volume = nbt.contains("Volume") ? nbt.getFloat("Volume") : 0.5f;
         this.loop = nbt.getBoolean("Loop");
         this.range = nbt.contains("Range") ? nbt.getInt("Range") : 48;
-        this.state = BoomboxState.fromId(nbt.getInt("State"));
-        this.errorMessage = nbt.getString("ErrorMessage");
-        this.trackPositionMs = nbt.getLong("TrackPositionMs");
-        this.trackIndex = nbt.getInt("TrackIndex");
     }
     //?} else {
     /*@Override
@@ -335,10 +319,6 @@ public class BoomboxBlockEntity extends BlockEntity {
         nbt.putFloat("Volume", volume);
         nbt.putBoolean("Loop", loop);
         nbt.putInt("Range", range);
-        nbt.putInt("State", state.id);
-        nbt.putString("ErrorMessage", errorMessage);
-        nbt.putLong("TrackPositionMs", trackPositionMs);
-        nbt.putInt("TrackIndex", trackIndex);
     }
 
     @Override
@@ -348,10 +328,6 @@ public class BoomboxBlockEntity extends BlockEntity {
         this.volume = nbt.contains("Volume") ? nbt.getFloat("Volume") : 0.5f;
         this.loop = nbt.getBoolean("Loop");
         this.range = nbt.contains("Range") ? nbt.getInt("Range") : 48;
-        this.state = BoomboxState.fromId(nbt.getInt("State"));
-        this.errorMessage = nbt.getString("ErrorMessage");
-        this.trackPositionMs = nbt.getLong("TrackPositionMs");
-        this.trackIndex = nbt.getInt("TrackIndex");
     }
     *///?}
 }

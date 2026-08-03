@@ -132,6 +132,8 @@ public class BoomboxScreen extends Screen {
                 .dimensions(wx + 178, wy + 110, 22, 20)
                 .build();
         addDrawableChild(nextButton);
+
+        SoundscapeClientNetworking.requestBoomboxState(boomboxPos);
     }
 
     //? if >=1.20.5 {
