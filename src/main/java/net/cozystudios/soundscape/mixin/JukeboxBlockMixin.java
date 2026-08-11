@@ -48,7 +48,7 @@ import net.minecraft.util.Hand;
 *///?}
 
 
-@Mixin(JukeboxBlock.class)
+@Mixin(value = JukeboxBlock.class, priority = 1500)
 public class JukeboxBlockMixin {
 
     private static final Text TITLE = Text.translatable("soundscape.jukebox.title");

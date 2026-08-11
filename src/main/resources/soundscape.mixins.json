@@ -3,6 +3,7 @@
   "minVersion": "0.8",
   "package": "${group}.mixin",
   "compatibilityLevel": "JAVA_17",
+  "plugin": "net.cozystudios.soundscape.mixin.SoundscapeMixinPlugin",
   "mixins": [
     "BlockMixin",
     "JukeboxBlockEntityAccessor",
@@ -15,6 +16,7 @@
     "client.ClientWorldMixin",
     "client.WorldRendererMixin",
     "client.WorldEventHandlerMixin",
+    "client.AmendmentsResourceGenMixin",
     "client.SoundCategoryAccessor",
     "client.SoundManagerAccessor",
     "client.SoundSystemAccessor",
