@@ -22,6 +22,7 @@ public class SoundscapeClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         BoomboxSoundCategory.register();
+        net.cozystudios.soundscape.compat.AmendmentsCompat.tryDisableJukeboxAssets();
         SoundscapeClientNetworking.registerClient();
         MenuScreens.register(SoundscapeScreenHandlers.JUKEBOX_SCREEN_HANDLER, JukeboxScreen::new);
 

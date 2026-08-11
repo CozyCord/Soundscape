@@ -94,29 +94,6 @@ public class JukeboxBlockMixin {
         }
     }
 
-    @Unique
-    private static final VoxelShape SHAPE_NS = Block.box(-3, 0, 2, 19, 29, 14);
-    @Unique
-    private static final VoxelShape SHAPE_EW = Block.box(2, 0, -3, 14, 29, 19);
-    @Unique
-    private static final VoxelShape COLLISION_SHAPE = Block.box(0, 0, 0, 16, 32, 16);
-
-    protected VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-        Direction facing = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
-        return (facing == Direction.EAST || facing == Direction.WEST) ? SHAPE_EW : SHAPE_NS;
-    }
-
-    protected VoxelShape getCollisionShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-        return COLLISION_SHAPE;
-    }
-
-    protected VoxelShape getOcclusionShape(BlockState state) {
-        return Shapes.empty();
-    }
-
-    public boolean useShapeForLightOcclusion(BlockState state) {
-        return true;
-    }
 
     @Inject(method = "createBlockStateDefinition", at = @At("TAIL"))
     private void soundscape$addFacingProperty(StateDefinition.Builder<Block, BlockState> builder, CallbackInfo ci) {
@@ -124,9 +101,4 @@ public class JukeboxBlockMixin {
         builder.add(net.cozystudios.soundscape.Soundscape.JUKEBOX_PLAYING);
     }
 
-    public BlockState getStateForPlacement(BlockPlaceContext ctx) {
-        return ((Block)(Object)this).defaultBlockState()
-                .setValue(BlockStateProperties.HORIZONTAL_FACING, ctx.getHorizontalDirection().getOpposite())
-                .setValue(net.cozystudios.soundscape.Soundscape.JUKEBOX_PLAYING, false);
-    }
 }
