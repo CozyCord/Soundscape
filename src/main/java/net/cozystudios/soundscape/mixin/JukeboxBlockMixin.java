@@ -33,7 +33,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(JukeboxBlock.class)
+@Mixin(value = JukeboxBlock.class, priority = 1500)
 public class JukeboxBlockMixin {
 
     private static final Component TITLE = Component.translatable("soundscape.jukebox.title");
