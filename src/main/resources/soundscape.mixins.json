@@ -9,6 +9,8 @@
     "JukeboxBlockEntityAccessor",
     "JukeboxBlockEntityMixin",
     "JukeboxBlockMixin",
+    "JukeboxBlockOverrideMixin",
+    "JukeboxBlockPlacementMixin",
     "JukeboxLuminanceMixin",
     "JukeboxManagerMixin"
   ],

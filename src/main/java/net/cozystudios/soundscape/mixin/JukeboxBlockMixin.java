@@ -15,16 +15,13 @@ import net.minecraft.block.Block;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import net.cozystudios.soundscape.jukebox.JukeboxSettingsProvider;
 import net.cozystudios.soundscape.jukebox.ShuffleQueue;
-import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
-import net.minecraft.block.ShapeContext;
 import net.minecraft.world.BlockView;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -180,41 +177,6 @@ public class JukeboxBlockMixin {
     }
     //?}
 
-    @Unique
-    private static final VoxelShape SHAPE_NS = Block.createCuboidShape(-3, 0, 2, 19, 29, 14);
-    @Unique
-    private static final VoxelShape SHAPE_EW = Block.createCuboidShape(2, 0, -3, 14, 29, 19);
-    @Unique
-    private static final VoxelShape COLLISION_SHAPE = Block.createCuboidShape(0, 0, 0, 16, 32, 16);
-
-    //? if >=1.21.2 {
-    /*protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-    *///?} else {
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-    //?}
-        Direction facing = state.get(Properties.HORIZONTAL_FACING);
-        return (facing == Direction.EAST || facing == Direction.WEST) ? SHAPE_EW : SHAPE_NS;
-    }
-
-    //? if >=1.21.2 {
-    /*protected VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-    *///?} else {
-    public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-    //?}
-        return COLLISION_SHAPE;
-    }
-
-    //? if >=1.21.2 {
-    /*protected VoxelShape getCullingShape(BlockState state) {
-    *///?} else {
-    public VoxelShape getCullingShape(BlockState state, BlockView world, BlockPos pos) {
-    //?}
-        return VoxelShapes.empty();
-    }
-
-    public boolean hasSidedTransparency(BlockState state) {
-        return true;
-    }
 
     @Inject(method = "appendProperties", at = @At("TAIL"))
     private void soundscape$addFacingProperty(StateManager.Builder<Block, BlockState> builder, CallbackInfo ci) {
@@ -222,9 +184,8 @@ public class JukeboxBlockMixin {
         builder.add(net.cozystudios.soundscape.Soundscape.JUKEBOX_PLAYING);
     }
 
-    public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return ((Block)(Object)this).getDefaultState()
-                .with(Properties.HORIZONTAL_FACING, ctx.getHorizontalPlayerFacing().getOpposite())
-                .with(net.cozystudios.soundscape.Soundscape.JUKEBOX_PLAYING, false);
+    @Inject(method = "method_9571", at = @At("HEAD"), cancellable = true, require = 0, remap = false)
+    private void soundscape$forceEmptyCullingShape(BlockState state, BlockView world, BlockPos pos, CallbackInfoReturnable<VoxelShape> cir) {
+        cir.setReturnValue(VoxelShapes.empty());
     }
 }
