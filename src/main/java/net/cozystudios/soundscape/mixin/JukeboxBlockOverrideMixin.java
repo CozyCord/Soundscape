@@ -42,12 +42,21 @@ public class JukeboxBlockOverrideMixin {
         }
     }
 
+    //? if >=1.21.4 {
+    /*@Inject(method = "getCullingShape", at = @At("HEAD"), cancellable = true)
+    private void soundscape$jukeboxCullingShape(BlockState state, CallbackInfoReturnable<VoxelShape> cir) {
+        if (state.getBlock() instanceof JukeboxBlock) {
+            cir.setReturnValue(VoxelShapes.empty());
+        }
+    }
+    *///?} else {
     @Inject(method = "getCullingShape", at = @At("HEAD"), cancellable = true)
     private void soundscape$jukeboxCullingShape(BlockState state, BlockView world, BlockPos pos, CallbackInfoReturnable<VoxelShape> cir) {
         if (state.getBlock() instanceof JukeboxBlock) {
             cir.setReturnValue(VoxelShapes.empty());
         }
     }
+    //?}
 
     @Inject(method = "hasSidedTransparency", at = @At("HEAD"), cancellable = true)
     private void soundscape$jukeboxSidedTransparency(BlockState state, CallbackInfoReturnable<Boolean> cir) {
