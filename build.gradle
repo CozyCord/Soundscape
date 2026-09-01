@@ -88,6 +88,15 @@ tasks.named('shadowJar', com.github.jengelman.gradle.plugins.shadow.tasks.Shadow
 
 tasks.named('jar', Jar) {
 	dependsOn tasks.named('shadowJar')
+
+	def mainClassDirs = sourceSets.main.output.classesDirs.files.collect { it.absolutePath }
+	def mainResourcesDir = sourceSets.main.output.resourcesDir?.absolutePath
+	exclude { element ->
+		def path = element.file.absolutePath
+		mainClassDirs.any { path.startsWith(it) } ||
+			(mainResourcesDir != null && path.startsWith(mainResourcesDir))
+	}
+
 	from(zipTree(tasks.named('shadowJar').flatMap { it.archiveFile })) {
 		exclude 'META-INF/MANIFEST.MF'
 		exclude 'META-INF/*.SF'
