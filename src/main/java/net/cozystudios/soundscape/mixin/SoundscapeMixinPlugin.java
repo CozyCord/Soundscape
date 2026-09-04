@@ -24,7 +24,8 @@ public class SoundscapeMixinPlugin implements IMixinConfigPlugin {
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        if (mixinClassName.endsWith(".AmendmentsResourceGenMixin")) {
+        if (mixinClassName.endsWith(".AmendmentsResourceGenMixin")
+                || mixinClassName.endsWith(".AmendmentsJukeboxRendererMixin")) {
             return AMENDMENTS_LOADED;
         }
         return true;
