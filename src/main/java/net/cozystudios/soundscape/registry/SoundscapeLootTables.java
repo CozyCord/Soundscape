@@ -7,14 +7,13 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
 public class SoundscapeLootTables {
 
     public static void register() {
         LootTableEvents.MODIFY.register((key, tableBuilder, source, registries) -> {
-            if (!source.isBuiltin()) return;
-
             if (key.equals(BuiltInLootTables.SIMPLE_DUNGEON)) {
                 addShardPool(tableBuilder, 0.3f, 1, 2);
             }
@@ -35,6 +34,7 @@ public class SoundscapeLootTables {
 
     private static void addShardPool(LootTable.Builder tableBuilder, float chance, int min, int max) {
         LootPool.Builder pool = LootPool.lootPool()
+                .setRolls(ConstantValue.exactly(1))
                 .add(LootItem.lootTableItem(SoundscapeItems.AMBIENCE_DISC_SHARD))
                 .when(LootItemRandomChanceCondition.randomChance(chance))
                 .apply(SetItemCountFunction.setCount(UniformGenerator.between(min, max)));
