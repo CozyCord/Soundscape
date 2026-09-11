@@ -1,26 +1,24 @@
 package net.cozystudios.soundscape.registry;
 
-import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
+//? if <1.21 {
+/*import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
+*///?} else {
+import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
+//?}
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.LootTables;
 import net.minecraft.loot.condition.RandomChanceLootCondition;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.function.SetCountLootFunction;
+import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
-import net.minecraft.util.Identifier;
-
-//? if >=1.21 {
-import net.minecraft.registry.RegistryKey;
-//?}
 
 public class SoundscapeLootTables {
 
     public static void register() {
         //? if >=1.21 {
-        LootTableEvents.MODIFY.register((key, tableBuilder, source) -> {
-            if (!source.isBuiltin()) return;
-
+        LootTableEvents.MODIFY.register((key, tableBuilder, source, registries) -> {
             if (key.equals(LootTables.SIMPLE_DUNGEON_CHEST)) {
                 addShardPool(tableBuilder, 0.3f, 1, 2);
             }
@@ -39,8 +37,6 @@ public class SoundscapeLootTables {
         });
         //?} else {
         /*LootTableEvents.MODIFY.register((resourceManager, lootManager, id, tableBuilder, source) -> {
-            if (!source.isBuiltin()) return;
-
             if (id.equals(LootTables.SIMPLE_DUNGEON_CHEST)) {
                 addShardPool(tableBuilder, 0.3f, 1, 2);
             }
@@ -62,6 +58,7 @@ public class SoundscapeLootTables {
 
     private static void addShardPool(LootTable.Builder tableBuilder, float chance, int min, int max) {
         LootPool.Builder pool = LootPool.builder()
+                .rolls(ConstantLootNumberProvider.create(1))
                 .with(ItemEntry.builder(SoundscapeItems.AMBIENCE_DISC_SHARD))
                 .conditionally(RandomChanceLootCondition.builder(chance))
                 .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(min, max)));
