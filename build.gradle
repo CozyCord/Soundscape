@@ -10,6 +10,7 @@ group = project.maven_group
 repositories {
 	mavenCentral()
 	maven { url = 'https://maven.lavalink.dev/releases' }
+	maven { url = 'https://repo.u-team.info' }
 }
 
 loom {
@@ -25,11 +26,10 @@ dependencies {
 	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 
-	// Shadowed audio libs — bundled into the built jar
-	shadowDeps("dev.arbjerg:lavaplayer:${project.lavaplayer_version}") {
+	shadowDeps("net.hycrafthd.lavaplayer:lavaplayer:${project.lavaplayer_version}") {
 		exclude group: 'org.slf4j'
 	}
-	implementation("dev.arbjerg:lavaplayer:${project.lavaplayer_version}") {
+	implementation("net.hycrafthd.lavaplayer:lavaplayer:${project.lavaplayer_version}") {
 		exclude group: 'org.slf4j'
 	}
 	shadowDeps("dev.lavalink.youtube:v2:${project.lavalink_youtube_version}") {
@@ -57,10 +57,6 @@ java {
 	targetCompatibility = JavaVersion.VERSION_25
 }
 
-// shadowJar bundles the audio libs (lavaplayer + youtube v2) with relocated packages,
-// then the main `jar` task pulls those class files in. Loom 1.16.3's `jar` is the final
-// remapped output (no separate remapJar in MC 26.1), so bundling here yields a
-// ready-to-ship mod jar.
 tasks.named('shadowJar', com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar) {
 	configurations = [project.configurations.shadowDeps]
 	archiveClassifier.set('shadow-deps')
