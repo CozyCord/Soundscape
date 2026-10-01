@@ -16,6 +16,7 @@ modSettings {
 }
 
 repositories {
+    maven("https://repo.u-team.info")
     maven("https://maven.lavalink.dev/releases")
     mavenCentral()
 }
@@ -25,10 +26,10 @@ val shadowDeps: Configuration by configurations.creating
 dependencies {
     modImplementation("net.fabricmc.fabric-api:fabric-api:${mod.prop("fabric_version")}")
 
-    shadowDeps("dev.arbjerg:lavaplayer:2.2.3") {
+    shadowDeps("net.hycrafthd.lavaplayer:lavaplayer:2.2.4-fix-j8") {
         exclude(group = "org.slf4j")
     }
-    implementation("dev.arbjerg:lavaplayer:2.2.3") {
+    implementation("net.hycrafthd.lavaplayer:lavaplayer:2.2.4-fix-j8") {
         exclude(group = "org.slf4j")
     }
 

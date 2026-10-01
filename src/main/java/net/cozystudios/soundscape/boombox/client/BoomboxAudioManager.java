@@ -6,20 +6,14 @@ import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
 import com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager;
 import dev.lavalink.youtube.YoutubeAudioSourceManager;
-import dev.lavalink.youtube.clients.Android;
-import dev.lavalink.youtube.clients.AndroidMusic;
-import dev.lavalink.youtube.clients.AndroidVr;
-import dev.lavalink.youtube.clients.Ios;
-import dev.lavalink.youtube.clients.MWeb;
-import dev.lavalink.youtube.clients.Music;
-import dev.lavalink.youtube.clients.Tv;
-import dev.lavalink.youtube.clients.TvHtml5Simply;
-import dev.lavalink.youtube.clients.Web;
-import dev.lavalink.youtube.clients.WebEmbedded;
 import com.sedmelluq.discord.lavaplayer.tools.FriendlyException;
 import com.sedmelluq.discord.lavaplayer.track.AudioPlaylist;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import net.cozystudios.soundscape.Soundscape;
+import net.cozystudios.soundscape.boombox.youtube.SessionRetry;
+import net.cozystudios.soundscape.boombox.youtube.YoutubeIosClient;
+import net.cozystudios.soundscape.boombox.youtube.YoutubeSearchClient;
+import net.cozystudios.soundscape.boombox.youtube.YoutubeTokenSession;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -39,6 +33,7 @@ public class BoomboxAudioManager {
     private static BoomboxAudioManager INSTANCE;
 
     private AudioPlayerManager lavaPlayerManager;
+    private YoutubeTokenSession youtubeSession;
     private final Map<BlockPos, BoomboxAudioInstance> activeBoomboxes = new ConcurrentHashMap<>();
     private final Map<BlockPos, Integer> boomboxRanges = new ConcurrentHashMap<>();
     private final Set<BlockPos> loadingPositions = ConcurrentHashMap.newKeySet();
@@ -65,20 +60,14 @@ public class BoomboxAudioManager {
             try {
                 lavaPlayerManager = new DefaultAudioPlayerManager();
                 lavaPlayerManager.getConfiguration().setOutputFormat(StandardAudioDataFormats.DISCORD_PCM_S16_BE);
-                lavaPlayerManager.registerSourceManager(new YoutubeAudioSourceManager(true,
-                        new TvHtml5Simply(),
-                        new Tv(),
-                        new Ios(),
-                        new AndroidVr(),
-                        new AndroidMusic(),
-                        new Android(),
-                        new Music(),
-                        new WebEmbedded(),
-                        new Web(),
-                        new MWeb()
-                ));
+                YoutubeAudioSourceManager youtube = new YoutubeAudioSourceManager(
+                        new YoutubeIosClient(),
+                        new YoutubeSearchClient()
+                );
+                lavaPlayerManager.registerSourceManager(youtube);
+                youtubeSession = new YoutubeTokenSession(youtube);
                 initialized = true;
-                Soundscape.LOGGER.info("LavaPlayer initialized successfully for Boombox");
+                Soundscape.LOGGER.info("LavaPlayer initialized successfully for Boombox (iOS {} + Web search)", YoutubeIosClient.CLIENT_VERSION);
             } catch (Exception e) {
                 Soundscape.LOGGER.error("Failed to initialize LavaPlayer", e);
             }
@@ -104,7 +93,7 @@ public class BoomboxAudioManager {
             return;
         }
 
-        lavaPlayerManager.loadItem(url, new AudioLoadResultHandler() {
+        SessionRetry.loadWithRetry(lavaPlayerManager, youtubeSession, url, new AudioLoadResultHandler() {
             @Override
             public void trackLoaded(AudioTrack track) {
                 MinecraftClient.getInstance().execute(() -> {
