@@ -67,7 +67,6 @@ public class BoomboxAudioManager {
                 lavaPlayerManager.registerSourceManager(youtube);
                 youtubeSession = new YoutubeTokenSession(youtube);
                 initialized = true;
-                Soundscape.LOGGER.info("LavaPlayer initialized successfully for Boombox (iOS {} + Web search)", YoutubeIosClient.CLIENT_VERSION);
             } catch (Exception e) {
                 Soundscape.LOGGER.error("Failed to initialize LavaPlayer", e);
             }
@@ -108,7 +107,6 @@ public class BoomboxAudioManager {
                     audioPlayer.playTrack(track);
                     instance.initialize();
                     activeBoomboxes.put(pos, instance);
-                    Soundscape.LOGGER.info("Playing track at boombox {}", pos);
                 });
             }
 
@@ -143,7 +141,6 @@ public class BoomboxAudioManager {
                     audioPlayer.playTrack(trackToPlay);
                     instance.initialize();
                     activeBoomboxes.put(pos, instance);
-                    Soundscape.LOGGER.info("Playing playlist ({} tracks) at boombox {}", tracks.size(), pos);
                 });
             }
 

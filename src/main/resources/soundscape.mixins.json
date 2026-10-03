@@ -12,7 +12,9 @@
     "JukeboxBlockOverrideMixin",
     "JukeboxBlockPlacementMixin",
     "JukeboxLuminanceMixin",
-    "JukeboxManagerMixin"
+    "JukeboxManagerMixin",
+    "JukeboxBlockRotationMixin",
+    "VillagerEntitySoundEngineerMixin"
   ],
   "client": [
     "client.ClientWorldMixin",

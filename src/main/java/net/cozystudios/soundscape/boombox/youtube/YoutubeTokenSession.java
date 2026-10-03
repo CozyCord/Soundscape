@@ -43,7 +43,6 @@ public final class YoutubeTokenSession {
             return false;
         }
         generation++;
-        Soundscape.LOGGER.info("Rotated YouTube session (generation {})", generation);
         return true;
     }
 }

@@ -1,10 +1,8 @@
 {
   "itemGroup.soundscape.soundscape": "Soundscape",
-
   "item.soundscape.ambience_disc_shard": "Ambient Disc Shard",
   "item.soundscape.ambience_disc": "Ambient Disc",
   "item.soundscape.boombox": "Boombox",
-
   "item.soundscape.music_disc_blocks_breaking": "Ambient Disc - Blocks Breaking",
   "item.soundscape.music_disc_blocks_breaking.desc": "Blocks Breaking",
   "item.soundscape.music_disc_cafe_ambience": "Ambient Disc - Cafe",
@@ -111,10 +109,8 @@
   "item.soundscape.music_disc_windchimes_2.desc": "Windchimes II",
   "item.soundscape.music_disc_wood_creaking": "Ambient Disc - Wood Creaking",
   "item.soundscape.music_disc_wood_creaking.desc": "Wood Creaking",
-
   "block.soundscape.boombox": "Boombox",
   "soundscape.boombox.title": "Boombox",
-
   "soundscape.jukebox.title": "Jukebox",
   "soundscape.jukebox.volume": "Volume: %d%%",
   "soundscape.jukebox.pitch": "Pitch: %s",
@@ -125,11 +121,9 @@
   "soundscape.jukebox.mode.loop": "Loop",
   "soundscape.jukebox.mode.shuffle": "Shuffle",
   "soundscape.jukebox.queue": "Queue",
-  "soundscape.jukebox.particles.on": "\u266a On",
-  "soundscape.jukebox.particles.off": "\u266a Off",
-
+  "soundscape.jukebox.particles.on": "♪ On",
+  "soundscape.jukebox.particles.off": "♪ Off",
   "soundCategory.boombox": "Boombox",
-
   "soundscape.category.nature": "Nature",
   "soundscape.category.water": "Water",
   "soundscape.category.weather": "Weather",
@@ -138,5 +132,6 @@
   "soundscape.category.horror": "Horror",
   "soundscape.category.industrial": "Industrial",
   "soundscape.category.interior": "Interior",
-  "soundscape.category.outdoor": "Outdoor"
+  "soundscape.category.outdoor": "Outdoor",
+  "entity.minecraft.villager.sound_engineer": "Sound Engineer"
 }

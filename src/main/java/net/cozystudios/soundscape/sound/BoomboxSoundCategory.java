@@ -53,7 +53,6 @@ public class BoomboxSoundCategory {
 
             BOOMBOX = boombox;
             registered = true;
-            Soundscape.LOGGER.info("Registered custom sound category: boombox");
         } catch (Throwable t) {
             Soundscape.LOGGER.warn("Failed to register Boombox sound category, falling back to RECORDS", t);
         }
@@ -114,7 +113,6 @@ public class BoomboxSoundCategory {
             createMethod.setAccessible(true);
             Object boomboxOption = createMethod.invoke(options, "options.sound.category.boombox", BOOMBOX);
             soundMap.put(BOOMBOX, boomboxOption);
-            Soundscape.LOGGER.info("Injected boombox sound category into vanilla options map");
         } catch (Throwable t) {
             Soundscape.LOGGER.warn("Failed to inject boombox category into options map", t);
         }
