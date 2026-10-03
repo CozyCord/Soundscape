@@ -8,6 +8,8 @@ import net.cozystudios.soundscape.registry.SoundscapeItems;
 import net.cozystudios.soundscape.registry.SoundscapeLootTables;
 import net.cozystudios.soundscape.registry.SoundscapeScreenHandlers;
 import net.cozystudios.soundscape.registry.SoundscapeSounds;
+import net.cozystudios.soundscape.village.MusicHouseVillagePools;
+import net.cozystudios.soundscape.villager.SoundscapeVillagers;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import org.slf4j.Logger;
@@ -28,6 +30,8 @@ public class Soundscape implements ModInitializer {
         SoundscapeLootTables.register();
         SoundscapeScreenHandlers.register();
         SoundscapeNetworking.registerServer();
+        MusicHouseVillagePools.registerCallback();
+        SoundscapeVillagers.register();
 
         LOGGER.info("Soundscape has been initialized!");
     }

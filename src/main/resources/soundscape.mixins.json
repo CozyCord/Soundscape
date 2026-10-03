@@ -12,7 +12,8 @@
     "JukeboxBlockOverrideMixin",
     "JukeboxBlockPlacementMixin",
     "JukeboxLuminanceMixin",
-    "JukeboxSongPlayerMixin"
+    "JukeboxSongPlayerMixin",
+    "JukeboxBlockRotationMixin"
   ],
   "client": [
     "client.AmendmentsResourceGenMixin",
