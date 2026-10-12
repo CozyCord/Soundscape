@@ -30,6 +30,7 @@ public class BoomboxScreen extends Screen {
     private ButtonWidget nextButton;
     private ButtonWidget skipBwdButton;
     private ButtonWidget skipFwdButton;
+    private BoomboxAudioModeButton audioModeButton;
     private BoomboxVolumeSlider volumeSlider;
     private BoomboxRangeSlider rangeSlider;
 
@@ -132,6 +133,9 @@ public class BoomboxScreen extends Screen {
                 .dimensions(wx + 178, wy + 110, 22, 20)
                 .build();
         addDrawableChild(nextButton);
+
+        audioModeButton = new BoomboxAudioModeButton(guiX + 302, guiY + 236, 50, 18);
+        addDrawableChild(audioModeButton);
 
         SoundscapeClientNetworking.requestBoomboxState(boomboxPos);
     }

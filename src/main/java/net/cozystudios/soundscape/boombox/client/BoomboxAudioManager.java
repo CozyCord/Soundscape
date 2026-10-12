@@ -310,6 +310,7 @@ public class BoomboxAudioManager {
                 return true;
             }
 
+            instance.setMode(BoomboxClientConfig.getAudioMode());
             instance.updatePositionAndGain(playerPos, boomboxPos, distance, maxRange);
             instance.tick();
             return false;
