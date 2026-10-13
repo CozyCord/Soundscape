@@ -256,7 +256,7 @@
         "processors": "minecraft:empty",
         "projection": "rigid"
       },
-      "weight": 30
+      "weight": 6
     }
   ],
   "fallback": "minecraft:village/taiga/terminators"

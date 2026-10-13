@@ -21,7 +21,7 @@ import java.util.List;
 
 public final class MusicHouseVillagePools {
 
-    private static final int WEIGHT = 30;
+    private static final int WEIGHT = 6;
 
     private static final String[][] MODDED_POOLS = {
             {"taiga",   "repurposed_structures:villages/giant_taiga/houses"},
