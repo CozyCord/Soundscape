@@ -310,6 +310,7 @@ public class BoomboxAudioManager {
                 return true;
             }
 
+            instance.setMode(net.cozystudios.soundscape.config.BoomboxConfig.get().audioMode);
             instance.updatePositionAndGain(playerPos, boomboxPos, distance, maxRange);
             instance.tick();
             return false;

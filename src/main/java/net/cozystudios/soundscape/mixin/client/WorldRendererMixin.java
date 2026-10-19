@@ -109,6 +109,15 @@ public class WorldRendererMixin {
 
         } else if (eventId == 1011) {
             ci.cancel();
+
+            boolean discEjected = true;
+            if (world != null && world.getBlockEntity(pos) instanceof JukeboxBlockEntity jukebox) {
+                discEjected = jukebox.getStack().isEmpty();
+            }
+            if (!discEjected && JukeboxSoundManager.handleSongEnded(pos)) {
+                return;
+            }
+
             JukeboxSoundManager.stopSound(pos);
         }
     }

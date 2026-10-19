@@ -118,7 +118,9 @@ public class JukeboxSoundManager {
 
         int songDuration = sound.getSongDurationTicks();
         if (songDuration > 0 && pitchAdjustedTicks < songDuration - 40) {
-            return true;
+            if (!sound.isLoopModeActive() && !sound.isShuffleModeActive()) {
+                return true;
+            }
         }
 
         MinecraftClient client = MinecraftClient.getInstance();
@@ -129,32 +131,11 @@ public class JukeboxSoundManager {
         }
 
         if (sound.isLoopModeActive()) {
-            SoundEvent soundEvent = sound.getSoundEvent();
-            int durationTicks = sound.getSongDurationTicks();
-            JukeboxBlockEntity jukebox = sound.getJukebox();
-
             sound.stop();
             MinecraftClient.getInstance().getSoundManager().stop(sound);
             activeSounds.remove(pos);
             pausedSounds.remove(pos);
-
-            if (jukebox != null && !jukebox.isRemoved()) {
-                EnhancedJukeboxSoundInstance newSound = new EnhancedJukeboxSoundInstance(soundEvent, pos, jukebox, durationTicks);
-                activeSounds.put(pos, newSound);
-                MinecraftClient.getInstance().getSoundManager().play(newSound);
-
-                if (jukebox instanceof JukeboxSettingsProvider provider) {
-                    JukeboxSettings settings = provider.soundscape$getSettings();
-                    if (settings != null) {
-                        settings.setWasPlaying(true);
-                    }
-                }
-                sendWasPlayingToServer(pos, true);
-            } else {
-                playSoundWithCachedSettings(pos, soundEvent, durationTicks, sound);
-                sendWasPlayingToServer(pos, true);
-            }
-
+            net.cozystudios.soundscape.network.SoundscapeClientNetworking.sendPlaybackCommand(pos, "play");
             return true;
         }
 
@@ -388,24 +369,11 @@ public class JukeboxSoundManager {
             return;
         }
 
-        SoundEvent soundEvent = oldSound.getSoundEvent();
-        JukeboxBlockEntity jukebox = oldSound.getJukebox();
-        int durationTicks = oldSound.getSongDurationTicks();
-
-        if (jukebox == null || jukebox.isRemoved()) {
-            activeSounds.remove(pos);
-            pausedSounds.remove(pos);
-            return;
-        }
-
         oldSound.stop();
         MinecraftClient.getInstance().getSoundManager().stop(oldSound);
         activeSounds.remove(pos);
         pausedSounds.remove(pos);
-
-        EnhancedJukeboxSoundInstance newSound = new EnhancedJukeboxSoundInstance(soundEvent, pos, jukebox, durationTicks);
-        activeSounds.put(pos, newSound);
-        MinecraftClient.getInstance().getSoundManager().play(newSound);
+        net.cozystudios.soundscape.network.SoundscapeClientNetworking.sendPlaybackCommand(pos, "play");
     }
 
     public static void checkForResumableJukeboxes() {

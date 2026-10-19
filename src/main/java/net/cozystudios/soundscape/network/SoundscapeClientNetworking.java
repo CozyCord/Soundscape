@@ -111,6 +111,17 @@ public class SoundscapeClientNetworking {
         *///?}
     }
 
+    public static void sendPlaybackCommand(BlockPos pos, String command) {
+        //? if >=1.20.5 {
+        ClientPlayNetworking.send(new SoundscapeNetworking.JukeboxPlaybackPayload(pos, command));
+        //?} else {
+        /*PacketByteBuf buf = PacketByteBufs.create();
+        buf.writeBlockPos(pos);
+        buf.writeString(command);
+        ClientPlayNetworking.send(SoundscapeNetworking.JUKEBOX_PLAYBACK_C2S, buf);
+        *///?}
+    }
+
     private static void handleSettingsSync(BlockPos pos, int volume, int pitch, int range, int mode, boolean paused, boolean wasPlaying, String songId, int songDuration) {
         MinecraftClient client = MinecraftClient.getInstance();
         if (client.world == null) return;

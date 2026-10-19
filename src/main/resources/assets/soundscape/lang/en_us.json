@@ -133,5 +133,11 @@
   "soundscape.category.industrial": "Industrial",
   "soundscape.category.interior": "Interior",
   "soundscape.category.outdoor": "Outdoor",
-  "entity.minecraft.villager.sound_engineer": "Sound Engineer"
+  "entity.minecraft.villager.sound_engineer": "Sound Engineer",
+  "text.autoconfig.soundscape.title": "Soundscape",
+  "text.autoconfig.soundscape.category.boombox": "Boombox",
+  "text.autoconfig.soundscape.option.boomboxConfig.audioMode": "Audio Mode",
+  "text.autoconfig.soundscape.option.boomboxConfig.audioMode.@Tooltip": "DIRECTIONAL: positional 3D audio, panned by where you look.\nFLAT: no panning, volume depends only on distance to the Boombox.\nApplies to every Boombox on this client.",
+  "text.autoconfig.soundscape.option.boomboxConfig.audioMode.DIRECTIONAL": "Directional (3D)",
+  "text.autoconfig.soundscape.option.boomboxConfig.audioMode.FLAT": "Flat (Stereo)"
 }

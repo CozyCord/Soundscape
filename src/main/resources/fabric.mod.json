@@ -20,6 +20,9 @@
     ],
     "client": [
       "${group}.SoundscapeClient"
+    ],
+    "modmenu": [
+      "${group}.SoundscapeModMenuIntegration"
     ]
   },
   "mixins": [
@@ -29,6 +32,7 @@
     "fabricloader": "*",
     "minecraft": ">=${minecraftVersion}",
     "java": ">=17",
-    "fabric-api": "*"
+    "fabric-api": "*",
+    "cloth-config": "*"
   }
 }

@@ -18,6 +18,8 @@ modSettings {
 repositories {
     maven("https://repo.u-team.info")
     maven("https://maven.lavalink.dev/releases")
+    maven("https://maven.shedaniel.me/")
+    maven("https://maven.terraformersmc.com/releases/")
     mavenCentral()
 }
 
@@ -25,6 +27,13 @@ val shadowDeps: Configuration by configurations.creating
 
 dependencies {
     modImplementation("net.fabricmc.fabric-api:fabric-api:${mod.prop("fabric_version")}")
+
+    modImplementation("me.shedaniel.cloth:cloth-config-fabric:${mod.prop("cloth_config_version")}") {
+        exclude(group = "net.fabricmc.fabric-api")
+    }
+
+    modCompileOnly("com.terraformersmc:modmenu:${mod.prop("mod_menu_version")}")
+    modRuntimeOnly("com.terraformersmc:modmenu:${mod.prop("mod_menu_version")}")
 
     shadowDeps("net.hycrafthd.lavaplayer:lavaplayer:2.2.4-fix-j8") {
         exclude(group = "org.slf4j")

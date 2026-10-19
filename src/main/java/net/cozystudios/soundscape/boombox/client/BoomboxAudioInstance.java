@@ -22,7 +22,13 @@ public class BoomboxAudioInstance {
     private static final int SAMPLE_RATE = 48000;
     private static final int FRAME_SIZE = 3840;
     private static final int FRAMES_PER_BUFFER = 12;
+    private static final int FRAME_MS = 20;
+
     private static final float FADE_DISTANCE = 8.0f;
+
+    private static final float PLATEAU_FRACTION = 0.8f;
+    private static final float PLATEAU_END_DB = -3.0f;
+    private static final float EDGE_DB = -40.0f;
 
     private final AudioPlayer audioPlayer;
     private final MutableAudioFrame frame;
@@ -35,6 +41,7 @@ public class BoomboxAudioInstance {
     private boolean started = false;
     private float volume;
     private boolean loop;
+    private net.cozystudios.soundscape.config.BoomboxConfig.AudioMode mode;
     private boolean destroyed = false;
     private boolean paused = false;
     private volatile int trackIndex;
@@ -46,6 +53,7 @@ public class BoomboxAudioInstance {
         this.audioPlayer = audioPlayer;
         this.volume = volume;
         this.loop = loop;
+        this.mode = net.cozystudios.soundscape.config.BoomboxConfig.get().audioMode;
         this.playlist = playlist;
         this.trackIndex = 0;
 
@@ -94,13 +102,51 @@ public class BoomboxAudioInstance {
         }
 
         alSource = AL10.alGenSources();
-        AL10.alSourcei(alSource, AL10.AL_SOURCE_RELATIVE, AL10.AL_FALSE);
-        AL10.alSource3f(alSource, AL10.AL_POSITION, 0f, 0f, 0f);
+        AL10.alSource3f(alSource, AL10.AL_VELOCITY, 0f, 0f, 0f);
         AL10.alSourcef(alSource, AL10.AL_GAIN, 0f);
         AL10.alSourcef(alSource, AL10.AL_ROLLOFF_FACTOR, 0f);
+        applySourceMode();
 
         alBuffers = new int[BUFFER_COUNT];
         AL10.alGenBuffers(alBuffers);
+        pendingBufferIndex = 0;
+        started = false;
+    }
+
+    private void applySourceMode() {
+        if (mode == net.cozystudios.soundscape.config.BoomboxConfig.AudioMode.FLAT) {
+            AL10.alSourcei(alSource, AL10.AL_SOURCE_RELATIVE, AL10.AL_TRUE);
+            AL10.alSource3f(alSource, AL10.AL_POSITION, 0f, 0f, 0f);
+        } else {
+            AL10.alSourcei(alSource, AL10.AL_SOURCE_RELATIVE, AL10.AL_FALSE);
+        }
+    }
+
+    public net.cozystudios.soundscape.config.BoomboxConfig.AudioMode getMode() {
+        return mode;
+    }
+
+    public void setMode(net.cozystudios.soundscape.config.BoomboxConfig.AudioMode newMode) {
+        if (newMode == null || newMode == mode) return;
+        mode = newMode;
+        if (destroyed || alSource == -1) return;
+
+        int queued = AL10.alGetSourcei(alSource, AL10.AL_BUFFERS_QUEUED);
+        int processed = AL10.alGetSourcei(alSource, AL10.AL_BUFFERS_PROCESSED);
+        long unplayedMs = (long) Math.max(0, queued - processed) * FRAMES_PER_BUFFER * FRAME_MS;
+
+        AL10.alSourceStop(alSource);
+        queued = AL10.alGetSourcei(alSource, AL10.AL_BUFFERS_QUEUED);
+        for (int i = 0; i < queued; i++) {
+            AL10.alSourceUnqueueBuffers(alSource);
+        }
+
+        AudioTrack track = audioPlayer.getPlayingTrack();
+        if (track != null && track.isSeekable()) {
+            track.setPosition(Math.max(0, track.getPosition() - unplayedMs));
+        }
+
+        applySourceMode();
         pendingBufferIndex = 0;
         started = false;
     }
@@ -186,23 +232,42 @@ public class BoomboxAudioInstance {
     public void updatePositionAndGain(Vec3d playerPos, BlockPos boomboxPos, double distance, float maxRange) {
         if (alSource == -1) return;
 
-        float x = (float) (boomboxPos.getX() + 0.5);
-        float y = (float) (boomboxPos.getY() + 0.5);
-        float z = (float) (boomboxPos.getZ() + 0.5);
-        AL10.alSource3f(alSource, AL10.AL_POSITION, x, y, z);
-
         float gain;
-        if (distance <= maxRange) {
-            gain = volume;
-        } else if (distance <= maxRange + FADE_DISTANCE) {
-            float fadeProgress = (float) (distance - maxRange) / FADE_DISTANCE;
-            gain = volume * (1.0f - fadeProgress);
+        if (mode == net.cozystudios.soundscape.config.BoomboxConfig.AudioMode.FLAT) {
+            gain = volume * flatDistanceGain(distance, maxRange);
         } else {
-            gain = 0f;
+            float x = (float) (boomboxPos.getX() + 0.5);
+            float y = (float) (boomboxPos.getY() + 0.5);
+            float z = (float) (boomboxPos.getZ() + 0.5);
+            AL10.alSource3f(alSource, AL10.AL_POSITION, x, y, z);
+            gain = volume * directionalDistanceGain(distance, maxRange);
         }
 
         gain *= net.cozystudios.soundscape.sound.BoomboxSoundCategory.getEffectiveVolume();
         AL10.alSourcef(alSource, AL10.AL_GAIN, gain);
+    }
+
+    static float directionalDistanceGain(double distance, float maxRange) {
+        if (distance <= maxRange) return 1.0f;
+        if (distance <= maxRange + FADE_DISTANCE) {
+            return 1.0f - (float) (distance - maxRange) / FADE_DISTANCE;
+        }
+        return 0f;
+    }
+
+    static float flatDistanceGain(double distance, float maxRange) {
+        float range = Math.max(maxRange, 1.0f);
+        if (distance >= range) return 0f;
+
+        double t = distance / range;
+        if (t <= PLATEAU_FRACTION) {
+            double p = t / PLATEAU_FRACTION;
+            return (float) Math.pow(10.0, (PLATEAU_END_DB * p * p) / 20.0);
+        }
+
+        double f = (t - PLATEAU_FRACTION) / (1.0 - PLATEAU_FRACTION);
+        double db = PLATEAU_END_DB + (EDGE_DB - PLATEAU_END_DB) * f;
+        return (float) (Math.pow(10.0, db / 20.0) * (1.0 - f));
     }
 
     public void tick() {
@@ -266,16 +331,34 @@ public class BoomboxAudioInstance {
 
         if (totalBytes == 0) return false;
 
-        byte[] monoData = downmixToMono(accumulated, totalBytes);
+        byte[] pcm;
+        int format;
+        if (mode == net.cozystudios.soundscape.config.BoomboxConfig.AudioMode.FLAT) {
+            pcm = toLittleEndianStereo(accumulated, totalBytes);
+            format = AL10.AL_FORMAT_STEREO16;
+        } else {
+            pcm = downmixToMono(accumulated, totalBytes);
+            format = AL10.AL_FORMAT_MONO16;
+        }
 
-        ByteBuffer nativeBuf = MemoryUtil.memAlloc(monoData.length);
+        ByteBuffer nativeBuf = MemoryUtil.memAlloc(pcm.length);
         try {
-            nativeBuf.put(monoData).flip();
-            AL10.alBufferData(alBuffer, AL10.AL_FORMAT_MONO16, nativeBuf, SAMPLE_RATE);
+            nativeBuf.put(pcm).flip();
+            AL10.alBufferData(alBuffer, format, nativeBuf, SAMPLE_RATE);
         } finally {
             MemoryUtil.memFree(nativeBuf);
         }
         return true;
+    }
+
+    private byte[] toLittleEndianStereo(byte[] bigEndian, int length) {
+        int len = length & ~1;
+        byte[] out = new byte[len];
+        for (int i = 0; i < len; i += 2) {
+            out[i] = bigEndian[i + 1];
+            out[i + 1] = bigEndian[i];
+        }
+        return out;
     }
 
     private byte[] downmixToMono(byte[] stereo, int length) {
