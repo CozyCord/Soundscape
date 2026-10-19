@@ -104,7 +104,8 @@ public class WorldRendererMixin {
                 }
             }
 
-            JukeboxSoundManager.playSound(pos, sound, jukebox);
+            int durationTicks = musicDisc.getSongLengthInTicks();
+            JukeboxSoundManager.playSound(pos, sound, jukebox, durationTicks);
 
         } else if (eventId == 1011) {
             ci.cancel();

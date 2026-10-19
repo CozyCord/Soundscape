@@ -558,7 +558,8 @@ public class JukeboxSoundManager {
             return true;
         }
 
-        playSound(pos, sound, jukebox);
+        int durationTicks = musicDisc.getSongLengthInTicks();
+        playSound(pos, sound, jukebox, durationTicks);
         return true;
         *///?}
     }
