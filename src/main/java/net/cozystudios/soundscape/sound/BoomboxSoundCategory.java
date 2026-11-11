@@ -51,10 +51,28 @@ public class BoomboxSoundCategory {
             long offset = unsafe.staticFieldOffset(valuesField);
             unsafe.putObject(base, offset, combined);
 
+            invalidateEnumCache(unsafe, SoundCategory.class);
+
             BOOMBOX = boombox;
             registered = true;
         } catch (Throwable t) {
             Soundscape.LOGGER.warn("Failed to register Boombox sound category, falling back to RECORDS", t);
+        }
+    }
+
+    private static void invalidateEnumCache(sun.misc.Unsafe unsafe, Class<?> enumClass) {
+        clearClassField(unsafe, enumClass, "enumConstants");
+        clearClassField(unsafe, enumClass, "enumConstantDirectory");
+    }
+
+    private static void clearClassField(sun.misc.Unsafe unsafe, Class<?> target, String fieldName) {
+        try {
+            Field f = Class.class.getDeclaredField(fieldName);
+            long offset = unsafe.objectFieldOffset(f);
+            unsafe.putObject(target, offset, null);
+        } catch (NoSuchFieldException ignored) {
+        } catch (Throwable t) {
+            Soundscape.LOGGER.warn("Failed to clear Class.{} for {}", fieldName, target.getName(), t);
         }
     }
 
